@@ -1,0 +1,25 @@
+{
+  "name": "ShizoBot",
+  "description": "WhatsApp Bot Base using Baileys. Written in javascript",
+  "keywords": [
+    "whatsapp bot",
+    "ShizoBot",
+    "WaBot",
+    "Termux-WaBot",
+    "WaBot-Base"
+  ],
+ "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    },
+    {
+      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
+    }
+  ]
+}
