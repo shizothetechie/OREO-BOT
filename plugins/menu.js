@@ -10,23 +10,11 @@ let tags = {
   'main': 'Main'
 }
 const defaultMenu = {
-  before: `╭─┉┉┉┉┈◈ *INFO* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪
- ⁝ *🥺 Name:* SANG-MD 
- ⁝ *🪀 Version:* %version
- ⁝ *🕓 Runtime:* %uptime
- ⁝ *👩‍💻 Developer:* Shizo The Techie
- ⁝ *📊 Database:* %totalreg users
- ⁝ *📚 Library:* Baileys
- ⁝ *🔮 Mode:* ${global.opts['self'] ? 'Self' : 'public'}
-╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪
-╭─┉┉┉┉┈◈ *INFO* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪
- ⁝ 📆 *Date:* %date
- ⁝ 🕰 *Time:* %time 
-╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪
+  before: `
 %readmore`.trimStart(),
-    header: '╭─┉┉┉┉┈◈ *%category* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪 ',
-  body: '┇ ☆  %cmd ',
-  footer: '╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪\n',
+    header: ',
+  body: '☆  %cmd ',
+  footer: '\n',
   after: `*Made by ♡ Shizo*`,
 }
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
@@ -157,27 +145,6 @@ function clockString(ms) {
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
-}
-
-function wish() {
-        const hour_now = moment.tz('Asia/Kolkata').format('HH')
-        var wishWishes = 'Good Morning 🌄'
-        if (hour_now >= '06' && hour_now <= '12') {
-          wishWishes = 'Good Morning 🌄️'
-        } else if (hour_now >= '12' && hour_now <= '17') {
-          wishWishes = 'Good Afternoon 🌤️'
-         } else if (hour_now >= '17' && hour_now <= '19') {
-          wishWishes = 'Good Evening 🌇'
-        } else if (hour_now >= '19' && hour_now <= '23') {
-          wishWishes = 'Good Night 🌃'
-        } else if (hour_now >= '23' && hour_now <= '05') {
-          wishWishes = 'Sweet Dream 💖 Sleep Well 😇'
-        } else if (hour_now >= '05' && hour_now <= '06') {
-          wishWishes = 'Do Study Bro'
-        } else {
-          wishWishes = 'Good night!'
-        }	
-        return wishWishes
 }
 
 
