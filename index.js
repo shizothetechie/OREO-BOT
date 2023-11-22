@@ -39,7 +39,6 @@ say('SHIZO-WABOT', {
   font: 'chrome',
   align: 'center',
   gradient: ['red', 'magenta']})
-//say(`Shizo The Techie Love Harshu`, {
 say(`Github@shizothetechie\nInstagram@shizo_the_techie`, {
   font: 'console',
   align: 'center',
