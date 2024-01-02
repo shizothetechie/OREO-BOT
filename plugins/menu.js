@@ -12,7 +12,7 @@ let tags = {
 const defaultMenu = {
   before: `
 %readmore`.trimStart(),
-    header: ',
+    header: '',
   body: '☆  %cmd ',
   footer: '\n',
   after: `*Made by ♡ Shizo*`,
