@@ -7,8 +7,7 @@ import fs from 'fs'
 //OwnerShip
 global.owner = [
   ['919172389527', 'Shizo Techie ❤️✨', true],
-  ['919637987574', 'S.AI Bot', true],
-  ['916207142994', 'Mr. Lens Lord 📸']
+  ['919637987574', 'S.AI Bot ✅🤖', true]
 ]
 global.mods = []
 global.prems = []
