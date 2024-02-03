@@ -1,7 +1,7 @@
 { 
-    "name": "ShizoBot",
-    "version": "1.0.0",
-    "description": "WhatsApp Bot Base using Baileys. Written in javascript",
+    "name": "OREO-BOT",
+    "version": "1.1.0",
+    "description": "WhatsApp Bot created with the help of ShizoBot-base using Baileys. Written in javascript",
     "main": "index.js",
     "type": "module",
     "directories": {
@@ -15,22 +15,22 @@
         "test2": "nodemon index.js"
     },
     "keywords": [
-    "whatsapp bot",
+    "oreo-bot",
     "ShizoBot",
     "WaBot",
     "Termux-WaBot",
     "WaBot-Base"
   ],
-    "homepage": "https://github.com/shizothetechie/shizobot",
+    "homepage": "https://github.com/shizothetechie/oreo-boy",
     "author": {
         "name": "Shizo The Techie"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/shizothetechie/shizobot.git"
+        "url": "git+https://github.com/shizothetechie/oreo-bot.git"
     },
     "bugs": {
-        "url": "https://github.com/shizothetechie/shizobot/issues"
+        "url": "https://github.com/shizothetechie/oreo-bot/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
