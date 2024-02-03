@@ -100,49 +100,53 @@ export async function handler(chatUpdate) {
             if (typeof chat !== 'object')
                 global.db.data.chats[m.chat] = {}
             if (chat) {
-                if (!('isBanned' in chat))
-                    chat.isBanned = false
                 if (!('swagat' in chat))
                     chat.swagat = false
-                if (!('detect' in chat))
-                    chat.detect = false
                 if (!('sSwagat' in chat))
                     chat.sSwagat = ''
-                if (!('sBye' in chat))
-                    chat.sBye = ''
-                if (!('sPromote' in chat))
-                    chat.sPromote = ''
-                if (!('sDemote' in chat))
-                    chat.sDemote = ''
-                if (!('delete' in chat))
-                    chat.delete = true
-                if (!('antiLink' in chat))
-                    chat.antiLink = false
-                if (!('viewonce' in chat))
-                    chat.viewonce = false
+               if (!("antiDelete" in chat)) chat.antiDelete = true
+                if (!("antiLink" in chat)) chat.antiLink = false
+                if (!("antiSticker" in chat)) chat.antiSticker = false
+                if (!("antiToxic" in chat)) chat.antiToxic = false
+                if (!("detect" in chat)) chat.detect = false
+                if (!("getmsg" in chat)) chat.getmsg = true
+                if (!("isBanned" in chat)) chat.isBanned = false
+    
+                if (!("sDemote" in chat)) chat.sDemote = ""
+                if (!("simi" in chat)) chat.simi = false
+                if (!("sPromote" in chat)) chat.sPromote = ""
+               if (!("useDocument" in chat)) chat.useDocument = false
+                if (!("viewOnce" in chat)) chat.viewOnce = false
+                if (!("viewStory" in chat)) chat.viewStory = false
+               if (!("chatbot" in chat)) chat.chatbot = false
+                if (!isNumber(chat.expired)) chat.expired = 0 
                 if (!('sirfBhartiya' in chat))
                     chat.sirfBhartiya = false
                  if (!('hfw' in chat))
                     chat.hfw = false
-                if (!isNumber(chat.expired))
-                    chat.expired = 0
-            } else
+if (!("sBye" in chat)) chat.sBye = ""
+               } else
                 global.db.data.chats[m.chat] = {
-                    isBanned: false,
                     swagat: false,
-                    detect: false,
                     sSwagat: '',
                     sBye: '',
                     sPromote: '',
                     sDemote: '',
-                    delete: true,
+                   sirfBhartiya: false,
+                    antiDelete: true,
                     antiLink: false,
-                    viewonce: false,
-                    useDocument: true,
-                    sirfBhartiya: false,
-                    hfw: false, 
+                    antiSticker: false,
+                    antiToxic: false,
+                    detect: false,
                     expired: 0,
-                }
+                    getmsg: true,
+                    isBanned: false,
+                    simi: false,
+                    useDocument: false,
+                    viewOnce: false,
+                    viewStory: false,
+                    chatbot: false
+         }
             let settings = global.db.data.settings[this.user.jid]
             if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
             if (settings) {
