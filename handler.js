@@ -42,12 +42,12 @@ export async function handler(chatUpdate) {
             if (user) {
                 if (!isNumber(user.exp))
                     user.exp = 0
-                if (!isNumber(user.ufo))
-                    user.ufo = 10
-                if (!isNumber(user.rupees))
-                    user.rupees = 50
-                if (!isNumber(user.paise))
-                    user.paise = 5000
+                if (!isNumber(user.credit))
+                    user.credit = 10
+                if (!isNumber(user.bank))
+                    user.bank = 0
+                if (!isNumber(user.chicken))
+                    user.chicken = 0  
                 if (!isNumber(user.lastclaim))
                     user.lastclaim = 0
                 if (!('registered' in user))
@@ -62,10 +62,10 @@ export async function handler(chatUpdate) {
                         user.regTime = -1
                 }
                 //--user number
-                if (!isNumber(user.offline))
-                    user.offline = -1
-                if (!('offlineReason' in user))
-                    user.offlineReason = ''
+                if (!isNumber(user.afk))
+                    user.afk = -1
+                if (!('afkReason' in user))
+                    user.afkReason = ''
                 if (!('banned' in user))
                     user.banned = false
                 if (!isNumber(user.warn))
@@ -73,27 +73,28 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.level))
                     user.level = 0
                 if (!('role' in user))
-                    user.role = 'chhotu'
+                    user.role = 'Tadpole'
                 if (!('autolevelup' in user))
                     user.autolevelup = false
-            } else
+            } else {
                 global.db.data.users[m.sender] = {
                     exp: 0,
-                    ufo: 10,
-                    rupees: 50,
-                    paise: 5000,
+                    credit: 0,
+                    bank: 0,
+                    chicken: 0,
                     lastclaim: 0,
                     registered: false,
                     name: m.name,
                     age: -1,
                     regTime: -1,
-                    offline: -1,
-                    offlineReason: '',
+                    afk: -1,
+                    afkReason: '',
                     banned: false,
                     warn: 0,
                     level: 0,
-                    role: 'chhotu',
+                    role: 'Tadpole',
                     autolevelup: false,
+                
                 }
             let chat = global.db.data.chats[m.chat]
             if (typeof chat !== 'object')
