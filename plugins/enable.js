@@ -34,6 +34,21 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
        }
        chat.detect = isEnable
      break
+
+      case 'antitoxic':
+      case 'antibadwords':
+        if (!m.isGroup) {
+         if (!isOwner) {
+           global.dfail('group', m, conn)
+          throw false
+        }
+       } else if (!isAdmin) {
+         global.dfail('admin', m, conn)
+         throw false
+       }
+       chat.antitoxic = isEnable
+     break
+
     
     case 'antidelete':
     case 'delete':
