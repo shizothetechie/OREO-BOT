@@ -49,6 +49,20 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
        chat.antitoxic = isEnable
      break
 
+      case 'antilink':
+      case 'antigclink':
+        if (!m.isGroup) {
+         if (!isOwner) {
+           global.dfail('group', m, conn)
+          throw false
+        }
+       } else if (!isAdmin) {
+         global.dfail('admin', m, conn)
+         throw false
+       }
+       chat.antilink = isEnable
+     break
+
     
     case 'antidelete':
     case 'delete':
@@ -143,8 +157,10 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 ▢ antilink
 ▢ detect 
 ▢ document
-▢ hfw
+▢ nsfw
 ▢ sirfbhartiya
+▢ antilink
+▢ antitoxic
 └───────────── 
 ┌─⊷ *USERS*
 ▢ autolevelup
