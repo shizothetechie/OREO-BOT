@@ -43,7 +43,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           throw false
         }
       }
-      chat.delete = !isEnable
+      chat.antidelete = isEnable
       break
 
     case 'public':
@@ -82,7 +82,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
            global.dfail('admin', m, conn)
             throw false
            }}
-    chat.hfw = isEnable          
+    chat.nsfw = isEnable          
     break
 
     case 'autolevelup':
