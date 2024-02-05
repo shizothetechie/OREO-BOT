@@ -75,7 +75,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       chat.sirfBhartiya = isEnable
       break
       
-      case 'hfw':
+      case 'nsfw':
       case '+18':
        if (m.isGroup) {
          if (!(isAdmin || isOwner)) {
