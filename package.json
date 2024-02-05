@@ -78,6 +78,8 @@
         "yargs": "^17.6.0",
         "moment-timezone": "^0.5.37",
         "fg-ig": "^0.0.2",
+        "megajs": "^1.1.4",
+        "@bochilteam/scraper": "^4.0.22-alpha.0",
         "@vitalets/google-translate-api": "^9.2.0",
         "api-dylux": "^1.6.9"
     },
