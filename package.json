@@ -81,7 +81,11 @@
         "megajs": "^1.1.4",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
         "@vitalets/google-translate-api": "^9.2.0",
-        "api-dylux": "^1.6.9"
+        "api-dylux": "^1.6.9",
+        "aptoide-scraper": "^1.0.1",
+        "youtubedl-core": "^4.11.5",
+        "@xct007/frieren-scraper": "*",
+        "@xct007/tiktok-scraper": "*"
     },
     "optionalDependencies": {
          "wa-sticker-formatter": "^4.3.2"
