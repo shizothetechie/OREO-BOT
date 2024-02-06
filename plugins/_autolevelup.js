@@ -1,3 +1,4 @@
+//import db from '../lib/database.js'
 import { canLevelUp } from '../lib/levelling.js'
 
 export async function before(m, { conn }) {
@@ -9,7 +10,15 @@ export async function before(m, { conn }) {
         user.level++
     user.role = global.rpg.role(user.level).name
     if (before !== user.level) {
-        m.reply(`💥 Congratulations !! Now you are on *${user.level}* level 🔥`.trim())
+        m.reply(`
+*▢ LEVEL UP*
+
+ *${before}* ‣  *${user.level}*
+ ROLE : *${user.role}*
+ 
+ _to deactivate write_
+_*/off autolevelup*_
+	`.trim())
     }
 }
 
