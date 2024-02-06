@@ -333,6 +333,10 @@ export async function handler(chatUpdate) {
                     fail('private', m, this)
                     continue
                 }
+                if (plugin.nsfw && global.db.data.chats[m.chat].nsfw == false) { // nsfw feats
+                    fail('nsfw', m, this)
+                    continue
+                }
                 if (plugin.register == true && _user.registered == false) { // Butuh daftar?
                     fail('unreg', m, this)
                     continue
