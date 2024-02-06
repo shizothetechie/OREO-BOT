@@ -566,6 +566,7 @@ global.dfail = (type, m, conn) => {
         group: '⚙️ This command can only be used in groups',
         private: '📮 This command can only be used in the Bots *private* chat.',
         admin: '🛡️ This command is only for *Admins* of the group',
+        nsfw: 'Enable NSFW to use this command 🥵🔥',
         botAdmin: '💥 To use this command I must be *Administrator*',
         unreg: '📇 Sign up to use this feature by writing:\n\n*/reg Name.age*\n\n📌 Example: */reg shizo.16*',
         restrict: '🔐 This feature is *disabled* by Owner'
