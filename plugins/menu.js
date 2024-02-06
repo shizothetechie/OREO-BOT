@@ -10,13 +10,19 @@ let tags = {
   'main': 'Main'
 }
 const defaultMenu = {
-  before: `
+before: `╭─┉┉┉┉┈◈ *INFO* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪
+ ⁝ 📛 *Name:* ${global.botname}
+ ⁝ 🧮 *Total:* 260+ Features
+ ⁝ 💠 *Version:* V1.2.1
+ ⁝ ⚒️ *Deployed:* ${global.author}
+ ⁝ 👨‍💻 *Developer:* Shizo Devs ❤️✨
+╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪
 %readmore`.trimStart(),
-    header: '',
-  body: '☆  %cmd ',
-  footer: '\n',
-  after: `*Made by ♡ Shizo*`,
-}
+  header: '╭─┉┉┈◈ *%category* ◈┈┉┉𓆩ꨄ︎𓆪 ',
+  body: '┇ ☆  %cmd',
+  footer: '╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪\n',
+   after: `*Made by ♡ Shizo*`,
+  }
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
 let sdevs = global.db.data.chats[m.chat].menud
