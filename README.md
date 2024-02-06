@@ -1,48 +1,105 @@
-<div align="center">
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Ribeye&size=50&pause=1000&color=F710B1&center=true&width=910&height=100&lines=Welcome+to+Shizo+Techie's+Project;Shizo+WhatsApp+Bot;Coded+By+Shizo Techie" alt="Typing SVG" /></a>
-</div>
-<p align="center"> 
+> **Warning**: Do not sell this script.
+
+<center>
+
+<img alt=🪄🍪 height="300" src="https://i.imgur.com/RCMg1aL.jpg">
+
+</center>
+
+<h1 align="center">OREO BOT</h1>
+
+
+
+<p align="center">
+
+ <a href="#"><img title="OREO-BOT" src="https://img.shields.io/badge/Whatshapp BOT-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
+
+</p>
+
+<p align="center">
+
+<a href="https://github.com/shizothetechie"><img title="Author" src="https://img.shields.io/badge/AUTHOR-shizothetechie-green.svg?style=for-the-badge&logo=github"></a>
+<br>
 <img src="https://komarev.com/ghpvc/?username=shizothetechie&color=brightgreen" />
-<p/>
 
-**Documentation** 🖇️
-<details>
-<summary> ShizoApi (Api) 🧞‍♀️ </summary>
-  <b> Click </b> <a href="https://shizoapi.onrender.com">Api Docs</a> for Documentation 
-  </details>
-  <br>
-  <details>
-  <summary> Installation Guides </summary>
+</p>
+
+
+
+## ```Connect With Me```
+
+<a href="https://api.whatsapp.com/send?phone=919172389527&text=hello+shizo+devs+❤️✨"><img src="https://img.shields.io/badge/Connect on WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
+<a href="https://instagram.com/shizo_the_techie"><img src="https://img.shields.io/badge/Connect on instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
+
+## ```Bot Support Groups```
+
+<a href="https://chat.whatsapp.com/JnBffMgpiCgBAra3GQC9rW"><img src="https://img.shields.io/badge/Join support group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
+
+<a href="https://whatsapp.com/channel/0029VaCkzkr3wtb1uYWiRz2o"><img src="https://img.shields.io/badge/Follow Channel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
+
+
+
+
+
+---------
+
+
+
+### Small Description About 
+
+- ✔️ | Simple
+
+- ✔️ | Fully Featured
+
+- ✔️ | Anti (call/sticker & more)
+
+- ✔️ | Nsfw 
+
+- ✔️ | Sticker 
+
+- ✔️ | Text Quotes
+
+- ✔️ | Pies
+
+- ✔️ | Anime 
+
+- ✔️ | Tools 
+
+---------
+
+
+
+# 🔥 MAIN SETUP
+
+1. Fork The OREO-BOT Repository 
+<a href="https://github.com/shizothetechie/OREO-BOT/fork"><img title="OREO BOT" src="https://img.shields.io/badge/FORK OREO BOT-h?color=orange&style=for-the-badge&logo=stackshare"></a>
+
+
+
+2. Obtain session for Your Number
+     <a href="https://shizo-wapair-connect.onrender.com/pair"><img title="GET SESSION" src="https://img.shields.io/badge/GET SESSION-h?color=blue&style=for-the-badge&logo=stackshare"></a><br>
+ <a href="https://youtube.com/shorts/-xyT0ib8fis?si=Bpj6soGa7Y39LCKi"> View Tutorial</a><br>
+
+
+
+###### ♦️ Must done Main Setup Before performing any of the following setups ♦️
+
 <br>
- **_TERMUX:_** 
- <br>
-<li> ---1. pkg update
- <li> ---2. pkg install git
-<li> ---3. pkg install nodejs
- <li> ---4. git clone https://github.com/shizothetechie/shizobot
- <br>
-- [Heroku Guide](https://shizoapi.onrender.com)
-</details>
-
-<br>
-
-<details>
-<summary> External Plugins </summary>
-
-##ShizoBot Support External plugin.
-<br>
-Shizo Bot can be upgrade by installing external plugin that made by third party developers. 
-<br>
-<br>
- **_NOTE:_** Installing External Plugin may cause error if plugin have any bug.
- <br><br>
-**For Developer**
-- [ External Plugin Build Docs ](https://github.com/shizothetechie/shizoX)
- </details>
 
 
-##Happy Diwali Guys
-This is an wonderful whatsapp bot base. this is based on plugins system. with sample plugins
 
+## 🪄🍪🔥 INSTALL OREO-BOT ON TERMINAL
 
-##Full Documents will add soon
+• For the First Time
+
+```
+
+apt update && apt upgrade && pkg update && pkg upgrade && pkg install libwebp -y && pkg install git -y && pkg install nodejs -y && pkg install ffmpeg -y && pkg install yarn && pkg install imagemagick -y && git clone https://github.com/shizothetech/oreo-bot.git && cd oreo-bot && yarn install && node .
+
+```
+
+• To Start
+```
+cd oreo-bot && node .
+```
+
