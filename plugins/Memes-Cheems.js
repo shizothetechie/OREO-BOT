@@ -7,7 +7,7 @@ let endpoint = `https://shizoapi.onrender.com/api/memes/cheems?apikey=${shizokey
 const response = await fetch(endpoint);
 if (response.ok) {
       const imageBuffer = await response.buffer();
-      await conn.sendFile(m.chat, imageBuffer, 'shizo.techie.error.png', msg, m);
+      await conn.sendFile(m.chat, imageBuffer, 'shizo.techie.error.png', msg, m, null, rpyt);
     } else {
       throw bug
     }
