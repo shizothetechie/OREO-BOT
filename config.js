@@ -31,6 +31,14 @@ global.shizokeys = 'shizo'
 global.stkpack = 'ShizoBot 🥵'
 global.stkowner = '© Shizo The Techie'
 
+//global emojis
+global.wait = '*⌛ _Charging..._*\n*▰▰▰▱▱▱▱▱*'
+global.rwait = '⌛'
+global.dmoji = '🤭'
+global.done = '✅'
+global.error = '❌' 
+global.xmoji = '🔥' 
+
 //management
 global.bug = '*!! Sorry 💢 !!*\nSomething went wrong 🌋'
 global.stop = '*!! 🎭 Unfortunately 💔 !!*\nBot system is not Responding 🙃'
