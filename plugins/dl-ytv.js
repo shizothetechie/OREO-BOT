@@ -9,9 +9,9 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
   if (!args || !args[0]) throw `✳️ Example:\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`;
   if (!args[0].match(/youtu/gi)) throw `❎ Verify that the YouTube link`;
   
-  var gapi = `${gurubot}/v1/ytmp4?url=${encodeURIComponent(args)}`
+  var gapi = `https://www.guruapi.tech/api/v1/ytmp4?url=${encodeURIComponent(args)}`
 
-  var ggapi = `${gurubot}/ytplay?url=${encodeURIComponent(args)}`
+  var ggapi = `https://www.guruapi.tech/api/ytplay?url=${encodeURIComponent(args)}`
 
   const response = await fetch(ggapi);
   if (!response.ok) {
