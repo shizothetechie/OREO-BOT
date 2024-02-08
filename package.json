@@ -80,7 +80,7 @@
         "similarity": "^1.2.1",
         "g-i-s": "^2.1.6",
          "sagiri": "*",
-        "sharp": "^0.30.5",
+        "sharp": "^0.32.2",
         "socket.io": "^4.5.2",
         "syntax-error": "^1.4.0",
         "terminal-image": "^2.0.0",
