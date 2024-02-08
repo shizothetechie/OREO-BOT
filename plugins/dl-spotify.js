@@ -8,7 +8,7 @@ let handler = async (m, { conn, text }) => {
         throw `*Please enter a song name*`;
     }
     try {
-        const apiUrl = `${gurubot}/spotifyinfo?text=${encodeURIComponent(text)}`;
+        const apiUrl = `https://www.guruapi.tech/api/spotifyinfo?text=${encodeURIComponent(text)}`;
         const response = await fetch(apiUrl);
         if (!response.ok) {
             console.log('Error searching for song:', response.statusText);
