@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 let handler  = async (m, { conn }) => {
     let shizokeys = 'shizo'        
-  let res = await fetch(`https://shizoapi.onrender.con/api/texts/lovenight?apikey=${shizokeys}`)
+  let res = await fetch(`https://shizoapi.onrender.com/api/texts/lovenight?apikey=${shizokeys}`)
   if (!res.ok) throw await res.text()
             let json = await res.json()
 
