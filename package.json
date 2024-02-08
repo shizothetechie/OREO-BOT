@@ -1,7 +1,7 @@
 { 
-    "name": "gurubot",
-    "version": "2.0.0",
-    "description": "Advanced WhatsApp Bot",
+    "name": "OREO-BOT",
+    "version": "1.1.3",
+    "description": "WhatsApp Bot created with the help of ShizoBot-base using Baileys. Written in javascript",
     "main": "index.js",
     "type": "module",
     "directories": {
@@ -11,34 +11,30 @@
     },
     "scripts": {
         "start": "node index.js",
-        "test": "node test.js"
+        "test": "node test.js",
+        "test2": "nodemon index.js"
     },
     "keywords": [
-        "termux-whatsapp-bot",
-        "whatsapp-bot",
-        "whatsapp",
-        "js-whatsapp",
-        "whatsapp",
-        "guru-bot",
-        "GURU-bot-md",
-        "multi-device",
-        "MD",
-        "baileys-md"
-    ],
-    "homepage": "https://github.com/Guru322/GURU-BOT",
+    "oreo-bot",
+    "ShizoBot",
+    "WaBot",
+    "Termux-WaBot",
+    "WaBot-Base"
+  ],
+    "homepage": "https://github.com/shizothetechie/oreo-bot",
     "author": {
-        "name": "GURU"
+        "name": "Shizo The Techie"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Guru322/GURU-BOT.git"
+        "url": "git+https://github.com/shizothetechie/oreo-bot.git"
     },
     "bugs": {
-        "url": "https://github.com/Guru322/GURU-BOT/issues"
+        "url": "https://github.com/shizothetechie/oreo-bot/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@whiskeysockets/baileys": "npm:@whiskeysockets/baileys",
+        "@whiskeysockets/baileys": "6.6.0",
         "@adiwajshing/keyed-db": "^0.2.4",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
         "awesome-phonenumber": "^3.4.0",
@@ -100,9 +96,7 @@
         "@vitalets/google-translate-api": "^9.2.0",
         "yargs": "^17.6.0",
         "youtubedl-core": "^4.11.5",
-        "wa-sticker-formatter": "^4.3.2",
         "@xct007/frieren-scraper": "*",
-        "@xct007/tiktok-scraper": "*"
-       
-    }
+        "@xct007/tiktok-scraper": "*"    
+}
 }
