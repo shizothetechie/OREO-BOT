@@ -3,7 +3,7 @@ import { join } from 'path';
 import axios from 'axios'; 
 
 let handler = async function (m, { conn, __dirname }) {
-  const githubRepoURL = 'https://github.com/shizothetechie/shizobot';
+  const githubRepoURL = 'https://github.com/shizothetechie/oreo-bot';
 
   try {
   
