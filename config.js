@@ -18,10 +18,8 @@ global.botname = 'ShizoBot'
  
  //Api's
 global.APIs = {
-  shizoapi: 'https://shizoapi.onrender.com'
 }
 global.APIKeys = { 
-  'https://shizoapi.onrender.com': 'shizo'
 }
 
 //Apikeys
