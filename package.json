@@ -21,7 +21,7 @@
     "Termux-WaBot",
     "WaBot-Base"
   ],
-    "homepage": "https://github.com/shizothetechie/oreo-boy",
+    "homepage": "https://github.com/shizothetechie/oreo-bot",
     "author": {
         "name": "Shizo The Techie"
     },
@@ -34,7 +34,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@whiskeysockets/baileys": "npm:@whiskeysockets/baileys",
+        "@whiskeysockets/baileys": "6.6.0",
         "@adiwajshing/keyed-db": "^0.2.4",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
         "awesome-phonenumber": "^3.4.0",
@@ -96,7 +96,6 @@
         "@vitalets/google-translate-api": "^9.2.0",
         "yargs": "^17.6.0",
         "youtubedl-core": "^4.11.5",
-        "wa-sticker-formatter": "^4.3.2",
         "@xct007/frieren-scraper": "*",
         "@xct007/tiktok-scraper": "*"    
 }
