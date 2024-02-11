@@ -36,7 +36,7 @@
     "dependencies": {
         "@whiskeysockets/baileys": "6.6.0",
         "@adiwajshing/keyed-db": "^0.2.4",
-        "@shizodevs/wabotmodule": "1.4.0"
+        "@shizodevs/wabotmodule": "1.4.0",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
         "awesome-phonenumber": "^3.4.0",
         "acrcloud": "^1.4.0",
