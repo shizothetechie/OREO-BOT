@@ -29,6 +29,9 @@ global.shizokeys = 'shizo'
 global.stkpack = 'ShizoBot 🥵'
 global.stkowner = '© Shizo The Techie'
 
+//Watermark
+global.maker = 'Made with ❤️ by OREO-BOT'
+
 //global emojis
 global.wait = '*⌛ _Charging..._*\n*▰▰▰▱▱▱▱▱*'
 global.rwait = '⌛'
