@@ -6,13 +6,16 @@ import { join } from 'path'
 import { xpRange } from '../lib/levelling.js'
 import moment from 'moment-timezone' 
   
+let totalf = Object.values(global.plugins).filter(
+    (v) => v.help && v.tags
+  ).length
 let tags = {
   'main': 'Main'
 }
 const defaultMenu = {
 before: `╭─┉┉┉┉┈◈ *INFO* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪
  ⁝ 📛 *Name:* ${global.botname}
- ⁝ 🧮 *Total:* 260+ Features
+ ⁝ 🧮 *Total:* ${totalf} + Features
  ⁝ 💠 *Version:* V1.2.1
  ⁝ ⚒️ *Deployed:* ${global.author}
  ⁝ 👨‍💻 *Developer:* Shizo Devs ❤️✨
