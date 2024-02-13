@@ -8,7 +8,7 @@ handler.all = async function (m) {
 	let pp = await this.profilePictureUrl(who, 'image').catch(_ => 'https://i.imgur.com/RCMg1aL.jpg')
 	
 	//reply link wa
-   global.rpgc = { contextInfo: { externalAdReply: { mediaUrl: 'https://i.imgur.com/RCMg1aL.jpg', mediaType: 'VIDEO', description: 'support group', title: 'SUBSCRIBE', body: 'support group', thumbnailUrl: 'https://i.imgur.com/RCMg1aL.jpg', sourceUrl: 'https://chat.whatsapp.com/JnBffMgpiCgBAra3GQC9rW' }}} 
+   global.rpgc = { contextInfo: { externalAdReply: { mediaUrl: 'https://i.imgur.com/RCMg1aL.jpg', mediaType: 'VIDEO', description: 'support group', title: 'SUBSCRIBE', body: 'support group', thumbnailUrl: 'https://i.imgur.com/RCMg1aL.jpg', sourceUrl: 'https://chat.whatsapp.com/DWqdPuQ0yFkKyf1SzZ0k9Y' }}} 
 	
 	//reply link Instagram 
     global.rpig = { contextInfo: { externalAdReply: { mediaUrl: 'https://i.imgur.com/RCMg1aL.jpg', mediaType: 'VIDEO', description: 'FOLLOW DEVELOPER', title: 'INSTAGRAM', body: 'Keep bot alive', thumbnailUrl: 'https://i.imgur.com/RCMg1aL.jpg', sourceUrl: 'https://instagram.com/shizo_the_techie' }}}
