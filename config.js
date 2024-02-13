@@ -13,7 +13,7 @@ global.mods = []
 global.prems = []
 
 global.author = 'Shizo The Techie'
-global.botname = 'ShizoBot'
+global.botname = 'OREO-BOT'
  
  
  //Api's
@@ -26,7 +26,7 @@ global.APIKeys = {
 global.shizokeys = 'shizo'
 
 //Sticker Watermarks
-global.stkpack = 'ShizoBot 🥵'
+global.stkpack = 'OREO-BOT 🥵'
 global.stkowner = '© Shizo The Techie'
 
 //Watermark
