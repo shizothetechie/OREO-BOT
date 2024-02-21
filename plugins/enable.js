@@ -7,6 +7,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let type = (args[0] || '').toLowerCase()
   let isAll = false, isUser = false
   switch (type) {
+
+//Features 🔥🕊️
+case 'swagat':
+    case 'welcome':
+       if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      bot.viewstatus = isEnable
+      break
+    
+
     case 'swagat':
     case 'welcome':
       if (!m.isGroup) {
