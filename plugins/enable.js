@@ -180,6 +180,7 @@ case 'autostatus':
 └─────────────
 ┌─⊷ *OWNER*
 ▢ public
+▢ autostatus
 └─────────────
 *📌 Example:*
 *${usedPrefix}on* swagat
