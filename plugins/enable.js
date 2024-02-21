@@ -9,8 +9,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   switch (type) {
 
 //Features 🔥🕊️
-case 'swagat':
-    case 'welcome':
+case 'autostatus':
+    case 'autostatusview':
        if (!isOwner) {
         global.dfail('owner', m, conn)
         throw false
