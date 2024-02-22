@@ -1,5 +1,5 @@
 let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
-	
+
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
@@ -17,7 +17,7 @@ case 'autostatus':
       }
       bot.viewstatus = isEnable
       break
-    
+
 
     case 'swagat':
     case 'welcome':
@@ -32,7 +32,7 @@ case 'autostatus':
       }
       chat.swagat = isEnable
       break
-      
+
       case 'detect':
       case 'detector':
         if (!m.isGroup) {
@@ -75,7 +75,7 @@ case 'autostatus':
        chat.antilink = isEnable
      break
 
-    
+
     case 'antidelete':
     case 'delete':
       if (m.isGroup) {
@@ -104,7 +104,7 @@ case 'autostatus':
       }
       chat.antiLink = isEnable
       break
-      
+
       case 'sirfbhartiya':
       case 'onlyIndian':
       if (m.isGroup) {
@@ -115,7 +115,7 @@ case 'autostatus':
       }
       chat.sirfBhartiya = isEnable
       break
-      
+
       case 'nsfw':
       case '+18':
        if (m.isGroup) {
@@ -130,7 +130,7 @@ case 'autostatus':
     isUser = true
      user.autolevelup = isEnable
      break
-     
+
     case 'restrict':
       isAll = true
       if (!isOwner) {
@@ -139,7 +139,7 @@ case 'autostatus':
       }
       bot.restrict = isEnable
       break
-    
+
     case 'onlypv':
     case 'onlydm':
       isAll = true
@@ -149,7 +149,7 @@ case 'autostatus':
       }
       global.opts['pconly'] = isEnable
       break
-      
+
     case 'gponly':
     case 'onlygp':
     case 'grouponly':
@@ -160,7 +160,7 @@ case 'autostatus':
       }
       global.opts['gconly'] = isEnable
       break
-      
+
     default:
       if (!/[01]/.test(command)) return m.reply(`Available Options to be Customised 
 
@@ -180,7 +180,6 @@ case 'autostatus':
 └─────────────
 ┌─⊷ *OWNER*
 ▢ public
-▢ autostatus
 └─────────────
 *📌 Example:*
 *${usedPrefix}on* swagat
