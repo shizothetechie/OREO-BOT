@@ -15,5 +15,5 @@ if (response.ok) {
 
 handler.tags = ['nsfw']
 handler.help = handler.command = ['nsero']
-
+handler.nsfw = true
 export default handler
