@@ -50,8 +50,8 @@ global.bottime = `*⫹⫺ Time:* ${moment.tz('Asia/Kolkata').format('HH:mm:ss')}
 
 //Hosting Management
 global.getQrWeb = 0
-global.keepAliveRender = 0
-
+global.renderHost = 0
+global.replitHost = 0
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
