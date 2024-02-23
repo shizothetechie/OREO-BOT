@@ -19,25 +19,26 @@ function connect(conn, PORT) {
   conn.ev.on('connection.update', function appQR({qr}) {
     if (qr) {
       _qr = qr
-      if (global.keepAliveRender === 1 && process.env.RENDER_EXTERNAL_URL) {
+      if (global.renderHost === 1 && process.env.RENDER_EXTERNAL_URL) {
         console.log(`To obtain the QR code go to ${process.env.RENDER_EXTERNAL_URL}/get-qr-code`);
       }
     } 
   })
   
-  app.get('/get-qr-code', async (req, res) => {
+  app.get('/qr', async (req, res) => {
     res.setHeader('content-type', 'image/png')
     res.end(await toBuffer(_qr))
   });
 
   app.get('/', async (req, res) => {
-res.sendFile(__path + '/media/oreo-shizo.html')
+    res.json("OREO-BOT is running");
   });
 
   server.listen(PORT, async () => {
     console.log('App listened on port', PORT)
-    if (global.keepAliveRender === 1) await keepAliveHostRender();
-    if (opts['keepalive']) keepAlive()
+    if (global.renderHost === 1) await keepAliveHostRender();
+    if (global.herokuHost === 1) 
+    if (global.replitHost === 1) keepAlive()
   })
 }
 
@@ -78,12 +79,12 @@ let configContent = await fs.readFile(configPath, 'utf8')
             console.log(`Result from keepAliveHostRender() ->`, result);
           }
         } else {
-        const isInitialConfig = configContent.includes('global.obtenerQrWeb = 1;') && configContent.includes('global.keepAliveRender = 1;')
+        const isInitialConfig = configContent.includes('global.getQrWeb = 1;') && configContent.includes('global.renderHost = 1;')
         if (isInitialConfig) {
-          console.log(`You are not using a Render.com Host\nChanging values ​​of "getQrWeb" and "keepAliveRender" to 0 in 'config.js'`)
+          console.log(`You are not using a Render.com Host\nChanging values ​​of "getQrWeb" and "renderHost" to 0 in 'config.js'`)
           try {
-          configContent = configContent.replace('global.obtenerQrWeb = 1;', 'global.obtenerQrWeb = 0;')
-          configContent = configContent.replace('global.keepAliveRender = 1;', 'global.keepAliveRender = 0;')
+          configContent = configContent.replace('global.getQrWeb = 1;', 'global.getQrWeb = 0;')
+          configContent = configContent.replace('global.renderHost = 1;', 'global.renderHost = 0;')
           await fs.writeFile(configPath, configContent, 'utf8')
           console.log('Configuration file updated successfully.')
         } catch (writeError) {
