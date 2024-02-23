@@ -36,7 +36,7 @@
     "dependencies": {
         "@whiskeysockets/baileys": "6.6.0",
         "@adiwajshing/keyed-db": "^0.2.4",
-        "@shizodevs/wabotmodule": "1.5.0",
+        "@shizodevs/wabotmodule": "letest",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
         "@shineiichijo/marika": "^2.0.6",
         "awesome-phonenumber": "^3.4.0",
