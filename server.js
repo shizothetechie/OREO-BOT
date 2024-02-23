@@ -30,8 +30,8 @@ function connect(conn, PORT) {
     res.end(await toBuffer(_qr))
   });
 
-  app.get('*', async (req, res) => {
-    res.json("OREO-BOT is running");
+  app.get('/', async (req, res) => {
+res.sendFile(__path + '/media/oreo-shizo.html')
   });
 
   server.listen(PORT, async () => {
