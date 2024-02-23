@@ -3,7 +3,7 @@ let handler = async (m, { conn, command, text, usedPrefix, participants }) => {
     let random = member[Math.floor(Math.random() * member.length)]
     let command_name = m.text.substring(prefix.length).split(" ")[0]
     let ments = [random]
-    let message = `${language['funf1']()} *${command}* ${language['funf2']()} @${random.split("@")[0]}  📝`
+    let message = `Thw Mos *${command}* is @${random.split("@")[0]}  📝`
     conn.sendMessage(m.chat, { text: message, mentions: [ments] }, { quoted: m })
     
 }
