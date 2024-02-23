@@ -16,7 +16,7 @@
     },
     "SESSION_ID": {
       "description": "your session id",
-      "required": true,
+      "required": false,
       "value": ""
     },
     "PRIVATE": {
