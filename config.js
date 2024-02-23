@@ -48,6 +48,9 @@ global.stop = '*!! 🎭 Unfortunately 💔 !!*\nBot system is not Responding �
 global.botdate = `*⫹⫺ Date:*  ${moment.tz('Asia/Kolkata').format('DD/MM/YY')}`
 global.bottime = `*⫹⫺ Time:* ${moment.tz('Asia/Kolkata').format('HH:mm:ss')}`
 
+//Hosting Management
+global.getQrWeb = 0
+global.keepAliveRender = 0
 
 
 let file = fileURLToPath(import.meta.url)
