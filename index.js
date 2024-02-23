@@ -36,12 +36,11 @@ const {
 } = cfonts
 const PORT = 8080 || 5000 || 300
 var app = express()
-app.get('/', (req, res) => {
-    res.sendFile(__path + '/media/oreo-shizo.html')
-})
-app.listen(PORT, () => {
-    console.log("Server running on port " + PORT)
-})
+app.enable('trust proxy');
+app.set("json spaces",2)
+app.use(cors())
+app.use(secure)
+app.use(express.static("public"))
 const rl = createInterface(process.stdin, process.stdout)
 console.log('OREO-BOT is starting 🚀')
 say('OREO-WA-BOT\nBy Shizo', {
@@ -52,6 +51,14 @@ say(`Github@shizothetechie\nInstagram@shizo_the_techie`, {
   font: 'console',
   align: 'center',
   gradient: ['red', 'magenta']})
+
+app.get('/', (req, res) => {
+    res.sendFile(__path + '/media/oreo-shizo.html')
+})
+
+app.listen(PORT, () => {
+    console.log("Server running on port " + PORT)
+})
 
 var isRunning = false
 /**
