@@ -1,5 +1,6 @@
 console.clear();
 import fs from 'fs'
+import express from 'express'
 import {
   join,
   dirname
@@ -33,9 +34,17 @@ const {
 const {
   say
 } = cfonts
+const PORT = 8080 || 5000 || 300
+var app = express()
+app.get('/', (req, res) => {
+    res.sendFile(__path + '/media/oreo-shizo.html')
+})
+app.listen(PORT, () => {
+    console.log(color("Server running on port " + PORT,'green'))
+})
 const rl = createInterface(process.stdin, process.stdout)
-console.log('ShizoBot is starting 🚀')
-say('SHIZO-WABOT', {
+console.log('OREO-BOT is starting 🚀')
+say('OREO-WA-BOT\nBy Shizo', {
   font: 'chrome',
   align: 'center',
   gradient: ['red', 'magenta']})
