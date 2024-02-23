@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
     res.sendFile(__path + '/media/oreo-shizo.html')
 })
 app.listen(PORT, () => {
-    console.log("Server running on port " + PORT,'green')
+    console.log("Server running on port " + PORT)
 })
 const rl = createInterface(process.stdin, process.stdout)
 console.log('OREO-BOT is starting 🚀')
