@@ -8,6 +8,33 @@
     "Termux-WaBot",
     "WaBot-Base"
   ],
+"env": {
+    "DATABASE_URL": {
+      "description": "your mongodb database url",
+      "required": false,
+      "value": ""
+    },
+    "SESSION_ID": {
+      "description": "your session id",
+      "required": true,
+      "value": ""
+    },
+    "PRIVATE": {
+      "description": "Set it true if you want to make the bot private, leave Blank for public",
+      "required": false,
+      "value": ""
+    },
+    "PREFIX": {
+      "description": "put any one symbol here except @ and + , leave it Blank if you want to use multiple prefix",
+      "required": false,
+      "value": ""
+    },
+     "REMOVEBG_KEY": {
+      "description": "your RemoveBg api key",
+      "required": false,
+      "value": ""
+    }
+    },
  "buildpacks": [
     {
       "url": "heroku/nodejs"
