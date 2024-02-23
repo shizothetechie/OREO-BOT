@@ -56,9 +56,21 @@ let handler = async (m, { conn, isRowner}) => {
           }})
   let neww = performance.now()
   let speed = neww - old
-let text = `Bot is Running from 
+let str = `Bot is Running from 
 ${muptime} \n\n🥵🔥 Support us https://github.com/shizothetechie/oreo-bot`
-await conn.sendMessage(m.chat, { text: text, mentions: [m.sender] }, { quoted: m })
+await conn.sendMessage(m.chat, {
+      text: str,
+      contextInfo: {
+      mentionedJid: [m.sender],
+      isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363175138505896@newsletter',
+                newsletterName: 'OREO-BOTZ',
+                serverMessageId: -1
+            },
+      forwardingScore: 1,
+      }})
+
 
 }
 handler.help = ['runtime']
