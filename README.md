@@ -77,7 +77,7 @@
 
 
 2. Obtain session for Your Number
-     <a href="orises-byshizo.onrender.com"><img title="GET SESSION" src="https://img.shields.io/badge/GET SESSION-h?color=blue&style=for-the-badge&logo=stackshare"></a><br>
+     <a href="https://orises-byshizo.onrender.com"><img title="GET SESSION" src="https://img.shields.io/badge/GET SESSION-h?color=blue&style=for-the-badge&logo=stackshare"></a><br>
  <a href="https://youtube.com/shorts/-xyT0ib8fis?si=Bpj6soGa7Y39LCKi"> View Tutorial</a><br>
 
 
