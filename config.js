@@ -6,7 +6,7 @@ import fs from 'fs'
 
 //OwnerShip
 global.owner = [
-  [process.env.OWNER_NUMBER || '919172389527', 'Shizo Techie ❤️✨', true],
+  [process.env.OWNER_NUMBER || '919172389527', process.env.OWNER_NAME || 'Shizo Techie ❤️✨', true],
   ['919172389527', 'Developer Shizo 🤖', true]
 ]
 global.mods = []
