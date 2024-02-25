@@ -33,6 +33,16 @@
       "description": "Name of Your Bot",
       "required": false,
       "value": ""
+    },
+"OWNER_NAME": {
+      "description": "owner name of the bot or Your Name",
+      "required": false,
+      "value": ""
+    },
+"OWNER_NUMBER": {
+      "description": "Your number or bot owner number",
+      "required": false,
+      "value": ""
     }
     },
  "buildpacks": [
