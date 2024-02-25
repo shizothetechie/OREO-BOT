@@ -43,6 +43,11 @@
       "description": "Your number or bot owner number",
       "required": false,
       "value": ""
+    },
+"BOT_NAME": {
+      "description": "Maker Text that replace MADE WITH ❤️ BY OREO-BOT",
+      "required": false,
+      "value": ""
     }
     },
  "buildpacks": [
