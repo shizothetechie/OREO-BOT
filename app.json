@@ -16,7 +16,7 @@
     },
     "SESSION_ID": {
       "description": "your session id",
-      "required": false,
+      "required": true,
       "value": ""
     },
     "PRIVATE": {
@@ -29,8 +29,8 @@
       "required": false,
       "value": ""
     },
-     "REMOVEBG_KEY": {
-      "description": "your RemoveBg api key",
+     "BOT_NAME": {
+      "description": "Name of Your Bot",
       "required": false,
       "value": ""
     }
