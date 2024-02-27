@@ -12,8 +12,8 @@ conn.reply(m.chat, wait, m)
   }
 };
 
-handler.help = ['tiktok', 'ttoxy'];
+handler.help = ['tiktk', 'ttoxy'];
 handler.tags = ['photooxy'];
-handler.command = /^(tiktok|ttoxy)$/i;
+handler.command = /^(tiktk|ttoxy)$/i;
 
 export default handler;
