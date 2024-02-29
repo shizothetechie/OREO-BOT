@@ -14,12 +14,6 @@
       "required": false,
       "value": ""
       },
-     "APP NAME": {
-      "description": "Put the Heroku app name, same as above entered",
-      "required": true,
-      "value": ""
-    
-    },
     "SESSION_ID": {
       "description": "your session id",
       "required": true,
