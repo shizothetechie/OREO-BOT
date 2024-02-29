@@ -76,8 +76,24 @@ export async function handler(chatUpdate) {
                     user.role = 'chhotu'
                 if (!('autolevelup' in user))
                     user.autolevelup = false
+   /*
+   Do Not Modify this Section ❌  👇👇
+   Else Relationship Features Will Not Work 😔
+   Your Devs Friend Shizo The Techie
+   */
+   if (!('lover' in user)) user.lover = ''
+      if (!('exlover' in user)) user.exlover = ''
+      if (!isNumber(user.excount)) user.excount = 0
             } else
                 global.db.data.users[m.sender] = {
+        lover: '',
+        exlover: '',
+        excount: 0,
+   /*
+   Do Not Modify this Section ❌  ☝️☝️
+   Else Relationship Features Will Not Work 😔
+   Your Devs Friend Shizo The Techie
+   */
                     exp: 0,
                     ufo: 10,
                     rupees: 50,
