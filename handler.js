@@ -48,6 +48,9 @@ export async function handler(chatUpdate) {
                     user.rupees = 50
                 if (!isNumber(user.paise))
                     user.paise = 5000
+                if (!isNumber(user.bank))
+                    user.bank = 0
+               
                 if (!isNumber(user.lastclaim))
                     user.lastclaim = 0
                 if (!('registered' in user))
@@ -98,6 +101,7 @@ export async function handler(chatUpdate) {
                     ufo: 10,
                     rupees: 50,
                     paise: 5000,
+                    bank: 0,
                     lastclaim: 0,
                     registered: false,
                     name: m.name,
