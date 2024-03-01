@@ -1,16 +1,4 @@
 import fetch from 'node-fetch';
-import { GIFBufferToVideoBuffer } from '@shizodevs/wabotmodule';
-
-const getBuffer = async (url) => {
-  try {
-    const response = await fetch(url);
-    const buffer = await response.arrayBuffer();
-    return Buffer.from(buffer);
-  } catch (error) {
-    console.error("Failed to get buffer", error);
-    throw new Error("Failed to get buffer");
-  }
-}
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   let who;
@@ -24,23 +12,18 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
   let name = conn.getName(who);
   let name2 = conn.getName(m.sender);
-  
+  m.react(rwait);
 
   let reaction = await fetch(`https://api.waifu.pics/sfw/${command}`);
   if (!reaction.ok) throw await reaction.text();
   
   let json = await reaction.json();
   let { url } = json;
-  const gifBuffer = await getBuffer(url);
-  const gifToVideoBuffer = await GIFBufferToVideoBuffer(gifBuffer);
 
-  conn.sendMessage(
-    m.chat,
-    { video: gifToVideoBuffer, caption: `(${name2}) ${command} ${name}`, gifPlayback: true, gifAttribution: 0 },
-    { quoted: m }
-  );
+conn.sendMessage(m.chat, { video: { url: url }, gifPlayback: true, caption: `(${name2}) ${command} ${name}`, mentions: [m.sender] }, { quoted: m })
 
-  
+
+  m.react('☺️'); 
 }
 
 handler.tags = ['reaction'];
