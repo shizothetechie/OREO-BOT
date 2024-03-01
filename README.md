@@ -28,7 +28,7 @@
 
 ## ```Connect With Me```
 
-<a href="https://api.whatsapp.com/send?phone=919172389527&text=hello+shizo+devs+❤️✨"><img src="https://img.shields.io/badge/Connect on WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
+<a href="https://api.whatsapp.com/send?phone=919637987574&text=hello+shizo+devs+❤️✨"><img src="https://img.shields.io/badge/Connect on WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
 <a href="https://instagram.com/shizo_the_techie"><img src="https://img.shields.io/badge/Connect on instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
 
 ## ```Bot Support Groups```
