@@ -96,6 +96,13 @@
 
 ## 🪄🍪🔥 INSTALL OREO-BOT ON TERMINAL
 
+##### Requirements for Terminal Setup
+```
+1. Termux
+2. Quick Edit
+3. Session (creds.json)
+```
+
 • For the First Time SetUp
 
 ```
