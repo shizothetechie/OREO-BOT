@@ -111,3 +111,10 @@ cd oreo-bot && node .
 
 ## 🥵🔥 INSTALL OREO-BOT ON HEROKU (EASIEST WAY)
 
+##### For Template & Easy 1 click Setup 
+
+``` <b> Requirements </b>
+1. Heroku Account
+2. A WhatsApp Number
+3. Orises Code (session) 
+```
