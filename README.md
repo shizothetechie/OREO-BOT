@@ -48,17 +48,11 @@
 ### Small Description About 
 
 - ✔️ | Simple
-
 - ✔️ | Fully Featured
-
 - ✔️ | Anti (call/sticker & more)
-
 - ✔️ | Nsfw 
-
 - ✔️ | Sticker 
-
 - ✔️ | Text Quotes
-
 - ✔️ | Pies
 - ✔️ | Anime 
 - ✔️ | Tools 
@@ -70,12 +64,16 @@
 ### NOTE 📜:
 1. Customize the Given Codes according to Your System 🧑‍💻
 2. We are not responsible for any kind of Your loss 🤧
-3. This documentations & Codes are originally Made by Shizo The Techie ✅
+3. Do not recode or modify obfuscated or encrypted codes to avoid errors & bugs 🐛
 4. Atleast Mention Name "Shizo The Techie" to appreciate my work 🥺
 5. Do not sell ❌
 
 ---------
-
+### Warning ⚠️ Important Notice
+<center> 
+This scripts are not endorsed, created, or affiliated with WhatsApp in any manner. Illegal or wrong Usage of these scripts may result in a ban from WhatsApp. Please use at your own risk.
+</center>
+---------
 
 
 # 🔥 MAIN SETUP
