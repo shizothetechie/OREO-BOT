@@ -73,6 +73,7 @@
 <center> 
 This scripts are not endorsed, created, or affiliated with WhatsApp in any manner. Illegal or wrong Usage of these scripts may result in a ban from WhatsApp. Please use at your own risk.
 </center>
+
 ---------
 
 
