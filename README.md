@@ -82,7 +82,7 @@
 
 <big> OR <big>
 
-2. Obtain session CodeX for Your Number
+2. Obtain Orises (session) for Your Number
      <a href="https://orises-byshizo.onrender.com"><img title="GET SESSION" src="https://img.shields.io/badge/GET SESSION-h?color=blue&style=for-the-badge&logo=stackshare"></a><br>
  <a href="https://youtube.com/shorts/-xyT0ib8fis?si=Bpj6soGa7Y39LCKi"> View Tutorial</a><br>
 
@@ -111,12 +111,9 @@ cd oreo-bot && node .
 
 ## 🥵🔥 INSTALL OREO-BOT ON HEROKU (EASIEST WAY)
 
-##### For Template & Easy 1 click Setup 
-
-**Requirements
+##### Requirements For 1 click Setup 
 
 ``` 
-__Shuzo
 1. Heroku Account
 2. A WhatsApp Number
 3. Orises Code (session) 
