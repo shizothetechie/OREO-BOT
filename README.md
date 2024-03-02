@@ -108,7 +108,8 @@
 ```
 1. Termux
 2. Quick Edit
-3. Session (creds.json)
+3. Material File Manager
+4. Session (creds.json)
 ```
 
 • For the First Time SetUp
