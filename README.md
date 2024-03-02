@@ -113,7 +113,8 @@ cd oreo-bot && node .
 
 ##### For Template & Easy 1 click Setup 
 
-``` <b> Requirements </b>
+``` 
+<b> Requirements </b>
 1. Heroku Account
 2. A WhatsApp Number
 3. Orises Code (session) 
