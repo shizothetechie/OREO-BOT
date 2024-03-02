@@ -131,5 +131,5 @@ cd oreo-bot && node .
  <a href="https://youtube.com/shorts/-xyT0ib8fis?si=Bpj6soGa7Y39LCKi"> View Tutorial</a><br>
 
 ◉ Deploy Direct on Heroku
- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://deploy-oreobot.onrender.com/)
+<br> [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://deploy-oreobot.onrender.com/)
 
