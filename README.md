@@ -133,3 +133,23 @@ cd oreo-bot && node .
 ◉ Deploy Direct on Heroku
 <br> [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://deploy-oreobot.onrender.com/)
 
+
+
+## CREDITS 
+<div><button id="boton" type="button">Baileys - By WhiskeySockets & adiwajshing</button></div>
+<a href="https://github.com/WhiskeySockets/Baileys"><img src="https://github.com/WhiskeySockets.png" width="70" height="70" alt="adiwajshing"/></a>
+
+<div><button id="boton" type="button">Base  - By Shizo The Techie (ShizoBot)</button></div>
+<a href="https://github.com/shizothetechie"><img src="https://github.com/shizothetechie.png" width="70" height="70" alt="adiwajshing"/></a>
+
+
+
+## `Main Dev` 
+<a href="https://github.com/shizothetechie"><img src="https://github.com/shizothetechie.png" width="100" height="100" alt="ShizoDevs"/></a>
+  
+`OREO-BOT - By Shizo The Techie`
+
+### CONTRIBUTORS
+<a href="https://github.com/syntax-king"><img src="https://github.com/syntax-king.png" width="85" height="85" alt="Subham"/></a>
+
+
