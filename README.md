@@ -60,10 +60,19 @@
 - ✔️ | Text Quotes
 
 - ✔️ | Pies
-
 - ✔️ | Anime 
-
 - ✔️ | Tools 
+
+---------
+
+---------
+
+### NOTE 📜:
+1. Customize the Given Codes according to Your System 🧑‍💻
+2. We are not responsible for any kind of Your loss 🤧
+3. This documentations & Codes are originally Made by Shizo The Techie ✅
+4. Atleast Mention Name "Shizo The Techie" to appreciate my work 🥺
+5. Do not sell ❌
 
 ---------
 
