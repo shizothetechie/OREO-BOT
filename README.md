@@ -136,7 +136,7 @@ cd oreo-bot && node .
 ```
 
 ◉ Obtain Orises (session) for Your Number
-     <a href="https://connectoreo.onrender.com/"><img title="Connect OREO-BOT Pairing" src="https://img.shields.io/badge/DOWNLOAD connectWaBot System-h?color=blue&style=for-the-badge&logo=stackshare"></a><br>
+     <a href="https://connectoreo.onrender.com/"><img title="Connect OREO-BOT Pairing" src="https://img.shields.io/badge/Connect OREO-BOT Pairing-h?color=blue&style=for-the-badge&logo=stackshare"></a><br>
  <a href="https://youtube.com/shorts/-xyT0ib8fis?si=Bpj6soGa7Y39LCKi"> View Tutorial</a><br>
 
 ◉ Deploy Direct on Heroku
