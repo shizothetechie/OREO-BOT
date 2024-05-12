@@ -1,16 +1,13 @@
-//made with ❤️ by Shizo 
-import { cpus as _cpus, totalmem, freemem } from 'os'
-import util from 'util'
-import os from 'os'
-import { performance } from 'perf_hooks'
-import { sizeFormatter } from 'human-readable'
-let format = sizeFormatter({
-  std: 'JEDEC', // 'SI' (default) | 'IEC' | 'JEDEC'
-  decimalPlaces: 2,
-  keepTrailingZeroes: false,
-  render: (literal, symbol) => `${literal} ${symbol}B`,
-})
-let handler = async (m, { conn, isRowner}) => {
+import fs from 'fs'
+import { generateWAMessageFromContent } from '@whiskeysockets/baileys'
+const {
+    proto,
+    generateWAMessage,
+    areJidsSameUser
+} = (await import('@whiskeysockets/baileys')).default
+
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+	
 	let _muptime
     if (process.send) {
       process.send('uptime')
@@ -20,71 +17,55 @@ let handler = async (m, { conn, isRowner}) => {
       }) * 1000
     }
     let muptime = clockString(_muptime)
-  const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
-  const groupsIn = chats.filter(([id]) => id.endsWith('@g.us')) //groups.filter(v => !v.read_only)
-  const used = process.memoryUsage()
-  const cpus = _cpus().map(cpu => {
-    cpu.total = Object.keys(cpu.times).reduce((last, type) => last + cpu.times[type], 0)
-    return cpu
-  })
-  const cpu = cpus.reduce((last, cpu, _, { length }) => {
-    last.total += cpu.total
-    last.speed += cpu.speed / length
-    last.times.user += cpu.times.user
-    last.times.nice += cpu.times.nice
-    last.times.sys += cpu.times.sys
-    last.times.idle += cpu.times.idle
-    last.times.irq += cpu.times.irq
-    return last
-  }, {
-    speed: 0,
-    total: 0,
-    times: {
-      user: 0,
-      nice: 0,
-      sys: 0,
-      idle: 0,
-      irq: 0
+  let msg = generateWAMessageFromContent(m.chat, {
+  viewOnceMessage: {
+    message: {
+        "messageContextInfo": {
+          "deviceListMetadata": {},
+          "deviceListMetadataVersion": 2
+        },
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({
+            text: "YOUR BOT IS RUNNING FROM 🫣"  + muptime
+          }),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: "${global.owner}"
+          }),
+          header: proto.Message.InteractiveMessage.Header.create({
+            title: '',
+            subtitle: '',
+            hasMediaAttachment: false
+          }),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+            buttons: [
+              {
+                "name": "quick_reply",
+                "buttonParamsJson": "{\"display_text\":\"All Menu\",\"id\":\"/menu\"}"
+              },
+              {
+                "name": "quick_reply",
+                "buttonParamsJson": "{\"display_text\":\"Bot Speed ?\",\"id\":\"/ping\"}"
+              }
+           ],
+          })
+        })
     }
-  })
-  let old = performance.now()
+  }
+}, {})
 
-  await conn.sendMessage(m.chat, {
-          react: {
-            text: `⏱️`,
-            key: m.key,
-          }})
-  let neww = performance.now()
-  let speed = neww - old
-let str = `Bot is Running from 
-${muptime} \n\n🥵🔥 Support us https://github.com/shizothetechie/oreo-bot`
-await conn.sendMessage(m.chat, {
-      text: str,
-      contextInfo: {
-      mentionedJid: [m.sender],
-      isForwarded: true,
-            forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363175138505896@newsletter',
-                newsletterName: 'OREO-BOTZ',
-                serverMessageId: -1
-            },
-      forwardingScore: 1,
-      }})
-
-
+await conn.relayMessage(msg.key.remoteJid, msg.message, {
+  messageId: msg.key.id
+}) 
 }
 handler.help = ['runtime']
-handler.tags = ['info']
-handler.command = /^(uptime|runtime)$/i
+handler.tags = ['main']
+handler.command = ['runtime', 'uptime']
 export default handler
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
 
 function clockString(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
   let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-  return [d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
-}
+  return [d, 'd ', h, 'h ', m, 'm ', s, 's '].map(v => v.toString().padStart(2, 0)).join('')
+	  }
