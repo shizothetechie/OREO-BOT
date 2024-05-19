@@ -1,10 +1,11 @@
 {
-  "name": "ShizoBot",
+  "name": "OREO-BOT",
   "description": "WhatsApp Bot Base using Baileys. Written in javascript",
   "keywords": [
     "whatsapp bot",
     "ShizoBot",
     "WaBot",
+    "oreo-bot",
     "Termux-WaBot",
     "WaBot-Base"
   ],
@@ -48,7 +49,17 @@
       "description": "Maker Text that replace MADE WITH ❤️ BY OREO-BOT",
       "required": false,
       "value": ""
-    }
+    },
+"SOCIAL_MEDIA_LINK": {
+    "description": "Any one Link of Your Social Media",
+    "required": false,
+    "value": ""
+},
+  "GROUP_LINK": {
+    "description": "Your WhatsApp Group Link",
+    "required": false,
+    "value": ""
+  }
     },
  "buildpacks": [
     {
