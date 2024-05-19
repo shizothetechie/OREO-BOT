@@ -14,7 +14,10 @@ global.prems = []
 
 global.author = process.env.OWNER_NAME || 'Shizo The Techie'
 global.botname = process.env.BOT_NAME || 'OREO-BOT'
- 
+
+//Extra Shortcuts
+global.smlink = process.env.SOCIAL_MEDIA_LINK || 'https://instagram.com/shizo_the_techie'
+global.gclink = process.env.GROUP_LINK || 'https://chat.whatsapp.com/JnBffMgpiCgBAra3GQC9rW'
  
  //Api's
 global.APIs = {
