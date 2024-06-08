@@ -1,87 +1,60 @@
 import db from '../lib/database.js'
-import fs from 'fs'
-import { blueh } from '../../../FussionScreen/loadings.js'
-import { generateWAMessageFromContent } from '@whiskeysockets/baileys'
-const {
-    proto,
-    generateWAMessage,
-    areJidsSameUser
-} = (await import('@whiskeysockets/baileys')).default
 import { promises } from 'fs'
 import fs from 'fs'
 import fetch from 'node-fetch'
 import { join } from 'path'
 import { xpRange } from '../lib/levelling.js'
-import moment from 'moment-timezone' 
-  
-let totalf = Object.values(global.plugins).filter(
-    (v) => v.help && v.tags
-  ).length
-let tags = {
-  'main': 'Main'
-}
+import moment from 'moment-timezone'
+
+let totalf = Object.values(global.plugins).filter(v => v.help && v.tags).length
+let tags = { 'main': 'Main' }
 const defaultMenu = {
-before: `╭─┉┉┉┉┈◈ *BOT INFO* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪
- ⁝ 📛 *Name:* ${global.botname}
- ⁝ 🧮 *Total:* ${totalf} + Features
- ⁝ 💠 *Version:* V1.4.3
- ⁝ 🤏 *Prefix:* Multi Prefix 
- ⁝ 👨‍💻 *Developer:* ${global.owner}
-╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪
-%readmore`.trimStart(),
+  before: `╭─┉┉┉┉┈◈ *BOT INFO* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪
+    ⁝ 📛 *Name:* ${global.author}
+    ⁝ 🧮 *Total:* ${totalf} + Features
+    ⁝ 💠 *Version:* V1.4.3
+    ⁝ 🤏 *Prefix:* Multi Prefix 
+    ⁝ 👨‍💻 *Developer:* Shizo The Techie 
+    ╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪
+    %readmore`.trimStart(),
   header: '╭─┉┉┈◈ *%category* ◈┈┉┉𓆩ꨄ︎𓆪 ',
   body: '┇ ☆  %cmd',
   footer: '╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪\n',
-   after: `*Made by ♡ ${global.owner}*`,
-  }
+  after: `*Made by ♡ ${global.owner}*`,
+}
 
-export default handler;
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
-let sdevs = global.db.data.chats[m.chat].menud
-
+    // Reading package.json
     let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
-    let { rank } = global.db.data.users[m.sender]
-    let { exp, limit, level, role } = global.db.data.users[m.sender]
+
+    // User-specific data
+    let { rank, exp, limit, level, role } = global.db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
     let name = await conn.getName(m.sender)
-    let d = new Date(new Date + 3600000)
+
+    // Date and time calculations
+    let d = new Date(new Date() + 3600000)
     let locale = 'en'
-    // d.getTimeZoneOffset()
-    // Offset -420 is 18.00
-    // Offset    0 is  0.00
-    // Offset  420 is  7.00
     let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
     let week = d.toLocaleDateString(locale, { weekday: 'long' })
-    let date = d.toLocaleDateString(locale, {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    })
-    let dateIslamic = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    }).format(d)
-    let time = d.toLocaleTimeString(locale, {
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
-    })
+    let date = d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
+    let dateIslamic = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', { day: 'numeric', month: 'long', year: 'numeric' }).format(d)
+    let time = d.toLocaleTimeString(locale, { hour: 'numeric', minute: 'numeric', second: 'numeric' })
+
+    // Uptime calculations
     let _uptime = process.uptime() * 1000
-    let _muptime
-    if (process.send) {
-      process.send('uptime')
-      _muptime = await new Promise(resolve => {
-        process.once('message', resolve)
-        setTimeout(resolve, 1000)
-      }) * 1000
-    }
+    let _muptime = process.send ? await new Promise(resolve => {
+      process.once('message', resolve)
+      setTimeout(resolve, 1000)
+    }) * 1000 : 0
     let muptime = clockString(_muptime)
     let uptime = clockString(_uptime)
+
+    // Fetching user data
     let totalreg = Object.keys(global.db.data.users).length
     let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
-    let help = Object.values(plugins).filter(plugin => !plugin.disabled).map(plugin => {
+    let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => {
       return {
         help: Array.isArray(plugin.tags) ? plugin.help : [plugin.help],
         tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
@@ -91,10 +64,14 @@ let sdevs = global.db.data.chats[m.chat].menud
         enabled: !plugin.disabled,
       }
     })
+
+    // Organizing tags
     for (let plugin of help)
       if (plugin && 'tags' in plugin)
         for (let tag of plugin.tags)
           if (!(tag in tags) && tag) tags[tag] = tag
+
+    // Menu template
     conn.menu = conn.menu ? conn.menu : {}
     let before = conn.menu.before || defaultMenu.before
     let header = conn.menu.header || defaultMenu.header
@@ -138,52 +115,15 @@ let sdevs = global.db.data.chats[m.chat].menud
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './media/contact.png')
 
-let msg = generateWAMessageFromContent(m.chat, {
-  viewOnceMessage: {
-    message: {
-        "messageContextInfo": {
-          "deviceListMetadata": {},
-          "deviceListMetadataVersion": 2
-        },
-        interactiveMessage: proto.Message.InteractiveMessage.create({
-          body: proto.Message.InteractiveMessage.Body.create({
-            text: text.replace()
-          }),
-          footer: proto.Message.InteractiveMessage.Footer.create({
-            text: `${global.stkowner}`
-          }),
-          header: proto.Message.InteractiveMessage.Header.create({
-            title: "",
-            subtitle: "",
-            hasMediaAttachment: false
-          }),
-          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-            buttons: [
-              {
-                "name": "quick_reply",
-                "buttonParamsJson": "{\"display_text\":\"Owner🪷\",\"id\":\"/owner\"}{\"display_text\":\"Script 🫣\",\"id\":\"/script\"}{\"display_text\":\"Bot Speed 🚀\",\"id\":\"/ping\"}"
-              }
-           ],
-          })
-        })
-    }
-  }
-}, {})
-
-await conn.relayMessage(msg.key.remoteJid, msg.message, {
-  messageId: msg.key.id
-})
-  
-};
+    // Sending the menu
+    conn.sendButton(m.chat, text.replace(), author, pp, [['Script 🌹', '.script'], ['Bot Speed 🚀', '.ping']], null, [['Follow Owner 🫣', smlink], ['Join Group 🥰', gclink]], m)
     
   } catch (e) {
-   // conn.reply(m.chat, 'ERROR IN MENU', m)
-    throw stop
+    conn.reply(m.chat, 'ERROR IN MENU', m)
+    throw e
   }
 }
-
 handler.command = /^(menu|help)$/i
-
 handler.exp = 3
 
 export default handler
@@ -201,5 +141,3 @@ function clockString(ms) {
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
 }
-
-        
