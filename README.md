@@ -169,4 +169,4 @@ cd oreo-bot && node .
 
 <a href="https://github.com/kai0071"><img src="https://github.com/kai0071.png" width="85" height="85" alt="Achintya"/></a>
 
-<a href="https://github.com/Xei-Sensei"><img src="https://github.com/kai0071.png" width="85" height="85" alt="Xei Sensei"/></a>
+<a href="https://github.com/Xei-Sensei"><img src="https://github.com/Xei-Sensei.png" width="85" height="85" alt="Xei Sensei"/></a>
