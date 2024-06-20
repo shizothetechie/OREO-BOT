@@ -179,7 +179,7 @@ global.db = new Low(
     ? new CloudDBAdapter(opts['db'])
     : /mongodb(\+srv)?:\/\//i.test(opts['db'])
       ? new MongoDB(opts['db'])
-      : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
+      : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}userdb.json`)
 )
 
 global.DATABASE = global.db
