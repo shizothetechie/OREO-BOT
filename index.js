@@ -1,1 +1,131 @@
-const _0x144f65=_0x4398;function _0x4398(_0x333f71,_0x1b8634){const _0x279b49=_0x279b();return _0x4398=function(_0x439869,_0x3f0fbb){_0x439869=_0x439869-0xb9;let _0x271bca=_0x279b49[_0x439869];return _0x271bca;},_0x4398(_0x333f71,_0x1b8634);}(function(_0x49ae5f,_0x2ef705){const _0xd40702=_0x4398,_0x7c836b=_0x49ae5f();while(!![]){try{const _0x51b7b6=-parseInt(_0xd40702(0xcc))/0x1*(-parseInt(_0xd40702(0xd3))/0x2)+-parseInt(_0xd40702(0xcd))/0x3*(-parseInt(_0xd40702(0xcf))/0x4)+-parseInt(_0xd40702(0xd6))/0x5*(-parseInt(_0xd40702(0xd7))/0x6)+-parseInt(_0xd40702(0xdc))/0x7+parseInt(_0xd40702(0xbc))/0x8+-parseInt(_0xd40702(0xc6))/0x9+parseInt(_0xd40702(0xd0))/0xa;if(_0x51b7b6===_0x2ef705)break;else _0x7c836b['push'](_0x7c836b['shift']());}catch(_0x4fa961){_0x7c836b['push'](_0x7c836b['shift']());}}}(_0x279b,0x290f3),console[_0x144f65(0xd4)]());import _0x2f2352 from'fs';import{join,dirname}from'path';import{createRequire}from'module';import{fileURLToPath}from'url';import{setupMaster,fork}from'cluster';import{watchFile,unwatchFile}from'fs';function _0x279b(){const _0x3befdb=['log','env','slice','OREO-WA-BOT\x0aBy\x20Shizo','center','Github@shizothetechie\x0aInstagram@shizo_the_techie','argv','pm_id','send','1202247mMtTIq','./package.json','⚠️\x20Unexpected\x20error\x20⚠️','reset','stdout','magenta','27mxtPgz','44883dTfTZh','uptime','52jmMCzr','1456220VNBUvG','process','url','940tGeGTB','clear','stdin','4410tHKpsT','120YqFNwn','exitProcess','exit','error','kill','908026VgmJhA','OREO-BOT\x20is\x20starting\x20🚀','chrome','message','listenerCount','red','line','console','488280oIrBes'];_0x279b=function(){return _0x3befdb;};return _0x279b();}import _0x43c46d from'cfonts';import _0x3dda73 from'chalk';import{createInterface}from'readline';import _0x4c8023 from'yargs';const __dirname=dirname(fileURLToPath(import.meta[_0x144f65(0xd2)])),require=createRequire(__dirname),{name,author}=require(join(__dirname,_0x144f65(0xc7))),{say}=_0x43c46d,rl=createInterface(process[_0x144f65(0xd5)],process[_0x144f65(0xca)]);console[_0x144f65(0xbd)](_0x144f65(0xdd)),say(_0x144f65(0xc0),{'font':_0x144f65(0xde),'align':_0x144f65(0xc1),'gradient':[_0x144f65(0xb9),'magenta']}),say(_0x144f65(0xc2),{'font':_0x144f65(0xbb),'align':_0x144f65(0xc1),'gradient':[_0x144f65(0xb9),_0x144f65(0xcb)]});var isRunning=![];function start(_0x4b0ab4){const _0x2703f8=_0x144f65;if(isRunning)return;isRunning=!![];let _0x4194d6=[join(__dirname,_0x4b0ab4),...process['argv'][_0x2703f8(0xbf)](0x2)];setupMaster({'exec':_0x4194d6[0x0],'args':_0x4194d6[_0x2703f8(0xbf)](0x1)});let _0x23084a=fork();_0x23084a['on'](_0x2703f8(0xdf),_0x54b2cc=>{const _0x549256=_0x2703f8;switch(_0x54b2cc){case _0x549256(0xc9):_0x23084a[_0x549256(0xd1)][_0x549256(0xdb)](),isRunning=![],start['apply'](this,arguments);break;case _0x549256(0xce):_0x23084a[_0x549256(0xc5)](process[_0x549256(0xce)]());break;}}),_0x23084a['on'](_0x2703f8(0xd9),(_0x4c8772,_0x499213)=>{const _0x30ad4e=_0x2703f8;isRunning=![],console[_0x30ad4e(0xda)](_0x30ad4e(0xc8),_0x499213),_0x23084a['process'][_0x30ad4e(0xdb)](),isRunning=![],start['apply'](this,arguments),process[_0x30ad4e(0xbe)][_0x30ad4e(0xc4)]?process[_0x30ad4e(0xd9)](0x1):process[_0x30ad4e(0xd9)]();});let _0x1742c9=new Object(_0x4c8023(process[_0x2703f8(0xc3)][_0x2703f8(0xbf)](0x2))[_0x2703f8(0xd8)](![])['parse']());if(!_0x1742c9['test']){if(!rl[_0x2703f8(0xe0)]())rl['on'](_0x2703f8(0xba),_0x3e459a=>{const _0x19cc96=_0x2703f8;_0x23084a['emit'](_0x19cc96(0xdf),_0x3e459a['trim']());});}}start('shizo-oreo.js');
+import chalk from 'chalk'
+import { spawn } from 'child_process'
+import express from 'express'
+import figlet from 'figlet'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url';
+
+figlet(
+  'OREO-WA-BOT',
+  {
+    font: 'Ghost',
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+  },
+  (err, data) => {
+    if (err) {
+      console.error(chalk.red('Figlet error:', err))
+      return
+    }
+    console.log(chalk.yellow(data))
+  }
+)
+
+figlet(
+  'Biscuit Whatsapp Bot',
+  {
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+  },
+  (err, data) => {
+    if (err) {
+      console.error(chalk.red('Figlet error:', err))
+      return
+    }
+    console.log(chalk.magenta(data))
+  }
+)
+
+const app = express()
+const port = process.env.PORT || 8080
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, 'media')));
+
+app.get('/', (req, res) => {
+  res.redirect('/shizo.html');
+});
+
+app.listen(port, () => {
+  console.log(chalk.green(`Port ${port} is open`))
+})
+
+let isRunning = false
+
+async function start(file) {
+  if (isRunning) return
+  isRunning = true
+
+  const currentFilePath = new URL(import.meta.url).pathname
+  const args = [path.join(path.dirname(currentFilePath), file), ...process.argv.slice(2)]
+  const p = spawn(process.argv[0], args, {
+    stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
+  })
+
+  p.on('message', data => {
+    console.log(chalk.cyan(`✔️RECEIVED ${data}`))
+    switch (data) {
+      case 'reset':
+        p.kill()
+        isRunning = false
+        start.apply(this, arguments)
+        break
+      case 'uptime':
+        p.send(process.uptime())
+        break
+    }
+  })
+
+  p.on('exit', code => {
+    isRunning = false
+    console.error(chalk.red(`❌Exited with code: ${code}`))
+
+    if (code === 0) return
+
+    fs.watchFile(args[0], () => {
+      fs.unwatchFile(args[0])
+      start('Guru.js')
+    })
+  })
+
+  p.on('error', err => {
+    console.error(chalk.red(`Error: ${err}`))
+    p.kill()
+    isRunning = false
+    start('Guru.js')
+  })
+
+  const pluginsFolder = path.join(path.dirname(currentFilePath), 'plugins')
+
+  fs.readdir(pluginsFolder, async (err, files) => {
+    if (err) {
+      console.error(chalk.red(`Error reading plugins folder: ${err}`))
+      return
+    }
+    console.log(chalk.yellow(`Installed ${files.length} plugins`))
+
+    try {
+      const { default: baileys } = await import('@whiskeysockets/baileys')
+      const version = (await baileys.fetchLatestBaileysVersion()).version
+      console.log(chalk.yellow(`Using Baileys version ${version}`))
+    } catch (e) {
+      console.error(chalk.red(' Baileys library is not installed'))
+    }
+  })
+}
+
+start('shizo.js')
+
+process.on('unhandledRejection', () => {
+  console.error(chalk.red(`Unhandled promise rejection. Bot will restart...`))
+  start('shizo.js')
+})
+
+process.on('exit', code => {
+  console.error(chalk.red(`Exited with code: ${code}`))
+  console.error(chalk.red(`Bot will restart...`))
+  start('shizo.js')
+})

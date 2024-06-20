@@ -23,7 +23,7 @@
   ],
     "homepage": "https://github.com/shizothetechie/oreo-bot",
     "author": {
-        "name": "Shizo The Techie"
+        "name": "shizo"
     },
     "repository": {
         "type": "git",
@@ -34,9 +34,9 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@whiskeysockets/baileys": "6.6.0",
+        "@whiskeysockets/baileys": "*",
         "@adiwajshing/keyed-db": "^0.2.4",
-        "@shizodevs/wabotmodule": "1.6.0",
+        "@shizodevs/wabotmodule": "*",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
         "@shineiichijo/marika": "^2.0.6",
         "awesome-phonenumber": "^3.4.0",
@@ -57,6 +57,7 @@
         "file-type": "^18.0.0",
         "fluent-ffmpeg": "^2.1.2",
         "formdata-node": "^5.0.0",
+        "figlet": "^1.7.0",
         "human-readable": "^0.2.1",
         "instagram-url-direct": "^1.0.12",
         "imagemaker.js": "*",
