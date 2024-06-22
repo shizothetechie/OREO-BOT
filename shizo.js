@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import { existsSync, readFileSync, readdirSync, unlinkSync, watch } from 'fs'
 import { createRequire } from 'module'
 import path, { join } from 'path'
+import { tmpdir } from 'os';
 import { platform } from 'process'
 import { fileURLToPath, pathToFileURL } from 'url'
 import * as ws from 'ws'
@@ -34,8 +35,7 @@ import { default as Pino, default as pino } from 'pino'
 import syntaxerror from 'syntax-error'
 import { format } from 'util'
 import yargs from 'yargs'
-import CloudDBAdapter from './lib/cloudDBAdapter.js'
-import { MongoDB } from './lib/mongoDB.js'
+import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 
 const {
@@ -172,28 +172,22 @@ global.prefix = new RegExp(
     ) +
     ']'
 )
-global.opts['db'] = process.env.DATABASE_URL
 
+//global.opts['db'] = process.env.DATABASE_URL
 global.db = new Low(
-  /https?:\/\//.test(opts['db'] || '')
-    ? new CloudDBAdapter(opts['db'])
-    : /mongodb(\+srv)?:\/\//i.test(opts['db'])
-      ? new MongoDB(opts['db'])
-      : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}userdb.json`)
+  /https?:\/\//.test(opts['db'] || '') ?
+    new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
+      (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
+      new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}userdb.json`)
 )
-
-global.DATABASE = global.db
-
+global.DATABASE = global.db 
 global.loadDatabase = async function loadDatabase() {
-  if (global.db.READ)
-    return new Promise(resolve =>
-      setInterval(async function () {
-        if (!global.db.READ) {
-          clearInterval(this)
-          resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
-        }
-      }, 1 * 1000)
-    )
+  if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
+    if (!global.db.READ) {
+      clearInterval(this)
+      resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
+    }
+  }, 1 * 1000))
   if (global.db.data !== null) return
   global.db.READ = true
   await global.db.read().catch(console.error)
@@ -205,11 +199,13 @@ global.loadDatabase = async function loadDatabase() {
     msgs: {},
     sticker: {},
     settings: {},
-    ...(global.db.data || {}),
+    ...(global.db.data || {})
   }
   global.db.chain = chain(global.db.data)
 }
 loadDatabase()
+
+//Authenticator Credentials 
 global.authFolder = `Authenticators`
 const { state, saveCreds } = await useMultiFileAuthState(global.authFolder)
 let { version, isLatest } = await fetchLatestWaWebVersion()
@@ -323,22 +319,24 @@ if (!opts['test']) {
 }
 
 if (!opts['server']) (await import('./server.js')).default(global.conn, PORT)
+async function clearTmp() {
+  const tmp = [tmpdir(), join(__dirname, './tmp')]
+  const filename = []
+  tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
 
-function runCleanup() {
-  clearTmp()
-    .then(() => {
-      console.log('Temporary file cleanup completed.')
-    })
-    .catch(error => {
-      console.error('An error occurred during temporary file cleanup:', error)
-    })
-    .finally(() => {
-      // 2 minutes
-      setTimeout(runCleanup, 1000 * 60 * 2)
-    })
+  //---
+  return filename.map(file => {
+    const stats = statSync(file)
+    if (stats.isFile() && (Date.now() - stats.mtimeMs >= 1000 * 60 * 3)) return unlinkSync(file) // 3 minuto
+    return false
+  })
 }
+setInterval(async () => {
+	var a = await clearTmp()
+	console.log(chalk.cyan(`🚀 Bot Boosted and Temp Directory is Cleared 🔥`))
+}, 180000) //3 muntos
 
-runCleanup()
+clearTmp()
 
 function clearsession() {
   let prekey = []
