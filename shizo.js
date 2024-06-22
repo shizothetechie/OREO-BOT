@@ -3,7 +3,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1'
 import './config.js'
 import './shizo_modules.js'
 import dotenv from 'dotenv'
-import { existsSync, readFileSync, readdirSync, unlinkSync, watch } from 'fs'
+import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync } from 'fs';
 import { createRequire } from 'module'
 import path, { join } from 'path'
 import { tmpdir } from 'os';
@@ -173,7 +173,7 @@ global.prefix = new RegExp(
     ']'
 )
 
-global.opts['db'] = process.env.DATABASE_URL
+//global.opts['db'] = process.env.DATABASE_URL
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
     new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
@@ -371,7 +371,7 @@ async function connectionUpdate(update) {
   if (connection === 'open') {
     const { jid, name } = conn.user
 
-    let msgf = `Hai🤩${name} Congrats you have successfully deployed SHIZO-OREO-BOT\nJoin my support Group for any Query\n`
+    let msgf = `Hai🤩${name} Congrats you have successfully deployed SHIZO-OREO-BOT\nJoin my support Group for any Query\nhttps://chat.whatsapp.com/DWqdPuQ0yFkKyf1SzZ0k9Y`
 
     let gmes = conn.sendMessage(
       jid,
