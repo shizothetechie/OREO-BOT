@@ -1,6 +1,7 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1'
-import './config.js'
 
+import './config.js'
+import './shizo_modules.js'
 import dotenv from 'dotenv'
 import { existsSync, readFileSync, readdirSync, unlinkSync, watch } from 'fs'
 import { createRequire } from 'module'
