@@ -1,4 +1,3 @@
-import { cleartmp } from '../../FussionScreen/owner.js'
 import { tmpdir } from 'os'
 import path, { join } from 'path'
 import {
@@ -11,7 +10,7 @@ watch
 } from 'fs'
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => { 
 
-await cleartmp(conn, m.chat, m) 
+m.reply('Cleared Temporary Files 🫶💥')
 
 const tmp = [(__dirname, './tmp')]
 const filename = []
