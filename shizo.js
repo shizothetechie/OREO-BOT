@@ -10,7 +10,6 @@ import { platform } from 'process'
 import { fileURLToPath, pathToFileURL } from 'url'
 import * as ws from 'ws'
 import genses from './lib/genses.js'
-import clearTmp from './lib/tempclear.js'
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
   return rmPrefix
     ? /file:\/\/\//.test(pathURL)
