@@ -9,17 +9,18 @@ import moment from 'moment-timezone'
 let totalf = Object.values(global.plugins).filter(v => v.help && v.tags).length
 let tags = { 'main': 'Main' }
 const defaultMenu = {
-  before: `╭─┉┉┉┉┈◈ *BOT INFO* ◈┈┉┉┉┉┉𓆩ꨄ︎𓆪
-    ⁝ 📛 *Name:* ${global.author}
-    ⁝ 🧮 *Total:* ${totalf} + Features
-    ⁝ 💠 *Version:* V1.4.3
-    ⁝ 🤏 *Prefix:* Multi Prefix 
-    ⁝ 👨‍💻 *Developer:* Shizo The Techie 
-    ╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪
+  before: `┏━ ❮❮ 𝙼𝙴𝙽𝚄 ❯❯
+    ┃⫹⫺ *𝙽𝚊𝚖𝚎:* ${global.author}
+    ┃⫹⫺ *𝚃𝚘𝚝𝚊𝚕:* ${totalf} + Features
+    ┃⫹⫺ *𝚅𝚎𝚛𝚜𝚒𝚘𝚗:* V1.4.3
+    ┃⫹⫺ *𝙿𝚛𝚎𝚏𝚒𝚡:* Multi Prefix 
+    ┃⫹⫺ *𝙾𝚠𝚗𝚎𝚛:* 
+    ┃⫹⫺ *𝙿𝚕𝚊𝚝𝚏𝚘𝚛𝚖:* 𝙻𝚒𝚗𝚞𝚡
+    ┖─────────┈┈┈〠⸙࿉༐
     %readmore`.trimStart(),
-  header: '╭─┉┉┈◈ *%category* ◈┈┉┉𓆩ꨄ︎𓆪 ',
-  body: '┇ ☆  %cmd',
-  footer: '╰┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉𓆩ꨄ︎𓆪\n',
+  header: '┏━━━━ ❨ *%category* ❩ ━━┄┈ •⟅ ',
+  body: ' ┃✦ %cmd',
+  footer: '┗━═┅┅┅┅═━–––––––๑\n',
   after: `*Made by ♡ ${global.owner}*`,
 }
 
@@ -116,7 +117,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './media/contact.png')
 
     // Sending the menu
-    conn.sendButton(m.chat, text.replace(), author, pp, [['Script 🌹', '.script'], ['Bot Speed 🚀', '.ping']], null, [['Follow Owner 🫣', smlink], ['Join Group 🥰', gclink]], m)
+    conn.sendButton(m.chat, text.replace(), author, pp, [['Owner⚡', '.owner'], ['Bot Speed 🚀', '.ping']], null, [['Follow Owner 🫣', smlink], ['Join Group 🥰', gclink]], m)
     
   } catch (e) {
     conn.reply(m.chat, 'ERROR IN MENU', m)
