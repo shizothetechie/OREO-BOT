@@ -196,6 +196,7 @@ export async function handler(chatUpdate) {
         } catch (e) {
             console.error(e)
         }
+        if (m.isBaileys) return
         if (opts['listen'])
             return
         if (!m.fromMe && opts['self'])
