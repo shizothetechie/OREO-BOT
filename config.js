@@ -29,6 +29,7 @@ global.APIKeys = {
 global.shizokeys = 'shizo'
 
 //Sticker Watermarks
+global.packname = process.env.BOT_NAME || 'OREO-BOT 🥵'
 global.stkpack = process.env.BOT_NAME || 'OREO-BOT 🥵'
 global.stkowner = process.env.OWNER_NAME || '© Shizo The Techie'
 
