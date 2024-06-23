@@ -334,7 +334,7 @@ async function clearTmp() {
 setInterval(async () => {
 	var a = await clearTmp()
 	console.log(chalk.cyan(`🚀 Bot Boosted and Temp Directory is Cleared 🔥`))
-}, 180000) //3 muntos
+}, 180000) //3 minutes
 
 clearTmp()
 
@@ -369,6 +369,11 @@ async function connectionUpdate(update) {
     conn.logger.info(chalk.yellow('\nLogging in....'))
   }
   if (connection === 'open') {
+setInterval(async () => {
+	const { jid, name } = conn.user
+conn.reply(jid, '⭐ OREO-BOT is ALIVE', null)
+	console.log(chalk.cyan(`🫶⭐ ALIVE 🔥💗`))
+}, 1440000) 
     const { jid, name } = conn.user
 
     let msgf = `Hai🤩${name} Congrats you have successfully deployed SHIZO-OREO-BOT\nJoin my support Group for any Query\nhttps://chat.whatsapp.com/DWqdPuQ0yFkKyf1SzZ0k9Y`
