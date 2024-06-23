@@ -56,8 +56,7 @@ let handler = async (m, { conn, isRowner}) => {
           }})
   let neww = performance.now()
   let speed = neww - old
-let text = `${language['irt']()}
-${muptime}`
+let text = `${muptime}`
 await conn.sendMessage(m.chat, { text: text, mentions: [m.sender] }, { quoted: m })
 
 }
