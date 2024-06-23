@@ -173,7 +173,7 @@ global.prefix = new RegExp(
     ']'
 )
 
-global.opts['db'] = process.env.DATABASE_URL
+global.opts['db'] = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei'
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
     new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
