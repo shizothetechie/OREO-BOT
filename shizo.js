@@ -20,7 +20,6 @@ import dotenv from 'dotenv'
 import { Low, JSONFile } from 'lowdb';
 import pino from 'pino';
 import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
-import store from './lib/store.js'
 import genses from './lib/genses.js'
 import {
     useMultiFileAuthState,
