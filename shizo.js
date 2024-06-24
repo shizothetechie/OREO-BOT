@@ -30,6 +30,18 @@ import {
 const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
+const {
+  MessageRetryMap,
+  fetchLatestWaWebVersion,
+  makeCacheableSignalKeyStore,
+  makeInMemoryStore,
+  proto,
+  delay,
+  jidNormalizedUser,
+  PHONENUMBER_MCC,
+} = await (
+  await import('@whiskeysockets/baileys')
+).default
 
 protoType()
 serialize()
