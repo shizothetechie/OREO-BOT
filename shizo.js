@@ -46,7 +46,7 @@ const {
 */
 import { Low } from 'lowdb'
 import { JSONFile } from 'lowdb/node'
-import { cloudDBAdapter, mongoDB, mongoDBV2 } from './DB_Adapters/index.js'
+import { cloudDBAdapter, mongoDB, mongoDBV2 } from './lib/DB_Adapters/index.js'
 //import lodash from 'lodash'
 
 
