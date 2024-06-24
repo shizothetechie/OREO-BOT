@@ -36,7 +36,6 @@ const {
   makeCacheableSignalKeyStore,
   makeInMemoryStore,
   proto,
-  delay,
   jidNormalizedUser,
   PHONENUMBER_MCC,
 } = await (
