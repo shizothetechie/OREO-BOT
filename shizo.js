@@ -286,7 +286,7 @@ async function connectionUpdate(update) {
     console.log(await global.reloadHandler(true).catch(console.error));
     global.timestamp.connect = new Date;
   }
-  if (global.db.data == null) loadDatabase()
+ // if (global.db.data == null) loadDatabase()
     if (code && code == DisconnectReason.restartRequired) {
     conn.logger.info(chalk.yellow('\n🚩Restart Required... Restarting'))
     process.send('reset')
