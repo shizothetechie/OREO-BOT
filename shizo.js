@@ -17,7 +17,7 @@ import { tmpdir } from 'os';
 import { format } from 'util';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import dotenv from 'dotenv'
-import { Low, JSONFile } from 'lowdb';
+//import { Low, JSONFile } from 'lowdb';
 import pino from 'pino';
 import genses from './lib/genses.js'
 import {
