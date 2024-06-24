@@ -17,7 +17,10 @@ import { tmpdir } from 'os';
 import { format } from 'util';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import dotenv from 'dotenv'
-//import { Low, JSONFile } from 'lowdb';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node'
+import CloudDBAdapter from './lib/cloudDBAdapter.js'
+import { MongoDB } from './lib/mongoDB.js'
 import pino from 'pino';
 import genses from './lib/genses.js'
 import {
@@ -40,15 +43,6 @@ const {
 } = await (
   await import('@whiskeysockets/baileys')
 ).default
-
-/*
-      MongoDB Testing
-*/
-import { Low } from 'lowdb'
-import { JSONFile } from 'lowdb/node'
-import { cloudDBAdapter, mongoDB, mongoDBV2 } from './lib/DB_Adapters/index.js'
-//import lodash from 'lodash'
-
 
 protoType()
 serialize()
@@ -129,69 +123,28 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['PREFIX'] || '‎z/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.,\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-const databaseUrl = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei';
-const databaseAdapter = /https?:\/\//.test(databaseUrl) ?
-    new cloudDBAdapter(databaseUrl) : /mongodb(\+srv)?:\/\//i.test(databaseUrl) ?
-        (opts['mongodbv2'] ? new mongoDBV2(databaseUrl) : new mongoDB(databaseUrl)) :
-        new JSONFile(`${global.opts._[0] ? global.opts._[0] + '_' : ''}database.json`);
-
-let database = new Low(databaseAdapter);
-
-async function loadDatabase() {
-    // If database is being read, wait for it to finish
-    if (database._read) {
-        await new Promise((resolve) => {
-            const interval = setInterval(() => {
-                if (!database._read) {
-                    clearInterval(interval);
-                    resolve(database.data == null ? loadDatabase() : database.data);
-                }
-            }, 1000);
-        });
-    }
-
-    if (database.data !== null) return database.data;
-    
-    database._read = database.read().catch(console.error);
-    await database._read;
-
-    console.log('- Database loaded -');
-global.DATABASE = global.db 
-    database.data = {
-        users: {},
-        chats: {},
-        stats: {},
-        msgs: {},
-        sticker: {},
-        settings: {},
-        ...(database.data || {})
-    };
-
-    database.chain = lodash.chain(database.data);
-    return database.data;
-}
-
-loadDatabase();
-
-/*
-let sMongodb = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei'
-
+//Thanks To Gemini Advanced 💗🫶🏻
+global.opts['db'] = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei';
 global.db = new Low(
-  /https?:\/\//.test(sMongodb) ?
-    new cloudDBAdapter(sMongodb) : /mongodb(\+srv)?:\/\//i.test(sMongodb) ?
-      (opts['mongodbv2'] ? new mongoDBV2(sMongodb) : new mongoDB(sMongodb)) :
-      new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}userdb.json`)
+  /https?:\/\//.test(opts['db'] || '')
+    ? new CloudDBAdapter(opts['db'])
+    : /mongodb(\+srv)?:\/\//i.test(opts['db'])
+      ? new MongoDB(opts['db'])
+      : new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}userdb.json`)
 )
 
+global.DATABASE = global.db
 
-global.DATABASE = global.db 
 global.loadDatabase = async function loadDatabase() {
-  if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
-    if (!global.db.READ) {
-      clearInterval(this)
-      resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
-    }
-  }, 1 * 1000))
+  if (global.db.READ)
+    return new Promise(resolve =>
+      setInterval(async function () {
+        if (!global.db.READ) {
+          clearInterval(this)
+          resolve(global.db.data == null ? global.loadDatabase() : global.db.data)
+        }
+      }, 1 * 1000)
+    )
   if (global.db.data !== null) return
   global.db.READ = true
   await global.db.read().catch(console.error)
@@ -203,12 +156,11 @@ global.loadDatabase = async function loadDatabase() {
     msgs: {},
     sticker: {},
     settings: {},
-    ...(global.db.data || {})
+    ...(global.db.data || {}),
   }
   global.db.chain = chain(global.db.data)
 }
 loadDatabase()
-*/
 
 //-- SESSION
 global.authFolder = `Authenticators`
@@ -287,7 +239,6 @@ async function connectionUpdate(update) {
     console.log(await global.reloadHandler(true).catch(console.error));
     global.timestamp.connect = new Date;
   }
- // if (global.db.data == null) loadDatabase()
     if (code && code == DisconnectReason.restartRequired) {
     conn.logger.info(chalk.yellow('\n🚩Restart Required... Restarting'))
     process.send('reset')
