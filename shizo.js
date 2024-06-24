@@ -1,65 +1,43 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1'
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-import './config.js'
-import './shizo_modules.js'
-import dotenv from 'dotenv'
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync } from 'fs';
-import { createRequire } from 'module'
+import './config.js';
+import './shizo_modules.js';
+import { createRequire } from "module";
 import path, { join } from 'path'
-import { tmpdir } from 'os';
-import { platform } from 'process'
 import { fileURLToPath, pathToFileURL } from 'url'
-import * as ws from 'ws'
-import genses from './lib/genses.js'
-global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
-  return rmPrefix
-    ? /file:\/\/\//.test(pathURL)
-      ? fileURLToPath(pathURL)
-      : pathURL
-    : pathToFileURL(pathURL).toString()
-}
-global.__dirname = function dirname(pathURL) {
-  return path.dirname(global.__filename(pathURL, true))
-}
-global.__require = function require(dir = import.meta.url) {
-  return createRequire(dir)
-}
-global.shizobot = 'https://shizoapi.onrender.com/'
-
+import { platform } from 'process'
+import * as ws from 'ws';
+import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync } from 'fs';
+import yargs from 'yargs';
+import { spawn } from 'child_process';
+import lodash from 'lodash';
 import chalk from 'chalk'
-import { spawn } from 'child_process'
-import lodash from 'lodash'
-import { JSONFile, Low } from 'lowdb'
-import NodeCache from 'node-cache'
-import { default as Pino, default as pino } from 'pino'
-import syntaxerror from 'syntax-error'
-import { format } from 'util'
-import yargs from 'yargs'
+import syntaxerror from 'syntax-error';
+import { tmpdir } from 'os';
+import { format } from 'util';
+import { makeWASocket, protoType, serialize } from './lib/simple.js';
+import dotenv from 'dotenv'
+import { Low, JSONFile } from 'lowdb';
+import pino from 'pino';
 import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
-import { makeWASocket, protoType, serialize } from './lib/simple.js'
+import store from './lib/store.js'
+import genses from './lib/genses.js'
+import {
+    useMultiFileAuthState,
+    DisconnectReason,
+    fetchLatestBaileysVersion,
+    delay
+   } from '@whiskeysockets/baileys'
+const { CONNECTING } = ws
+const { chain } = lodash
+const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
-const {
-  DisconnectReason,
-  useMultiFileAuthState,
-  MessageRetryMap,
-  fetchLatestWaWebVersion,
-  makeCacheableSignalKeyStore,
-  makeInMemoryStore,
-  proto,
-  delay,
-  jidNormalizedUser,
-  PHONENUMBER_MCC,
-} = await (
-  await import('@whiskeysockets/baileys')
-).default
-
-import readline from 'readline'
-
+protoType()
+serialize()
 dotenv.config()
 
 async function main() {
   const txt = process.env.SESSION_ID
-
   if (!txt) {
     console.error('Environment variable not found.')
     return
@@ -71,22 +49,18 @@ async function main() {
     console.error('Error:', error)
   }
 }
-
 main()
 
 await delay(1000 * 10)
-
 async function shizocheck() {
   try {
     const packageJson = readFileSync('package.json', 'utf8')
     const packageData = JSON.parse(packageJson)
     const gnome = packageData.author && packageData.author.name
-
     if (!gnome) {
       console.log('LOl')
       process.exit(1)
     }
-
     const shizoname = Buffer.from('c2hpem8=', 'base64').toString()
     const shizoKingOnly = Buffer.from(
       `Q2hlYXAgQ29weSBPZiBTaGl6by1PUkVPLUJvdCBGb3VuZCAsIFBsZWFzZSBVc2UgdGhlIE9yaWdpbmFsIHNoaXpvLU9SRU8tQm90IEZyb20gaHR0cHM6Ly9naXRodWIuY29tL3NoaXpvdGhldGVjaGllL29yZW8tYm90CgrinaTvuI/inKjwn5SlCg==`,
@@ -96,7 +70,6 @@ async function shizocheck() {
       `U2VjdXJpdHkgY2hlY2sgcGFzc2VkLCBUaGFua3MgRm9yIHVzaW5nIFNoaXpvLU9SRU8tQk9UIE11bHRpRGV2aWNl`,
       'base64'
     ).toString()
-
     if (gnome && gnome.trim().toLowerCase() !== shizoname.toLowerCase()) {
       console.log(shizoKingOnly)
       process.exit(1)
@@ -108,12 +81,7 @@ async function shizocheck() {
     console.error('Error:', error)
   }
 }
-
 shizocheck()
-
-const pairingCode = !!global.pairingNumber || process.argv.includes('--pairing-code')
-const useQr = process.argv.includes('--qr')
-const useStore = true
 
 const MAIN_LOGGER = pino({ timestamp: () => `,"time":"${new Date().toJSON()}"` })
 
@@ -127,59 +95,32 @@ setInterval(() => {
   store?.writeToFile('./session.json')
 }, 10000 * 6)
 
-const msgRetryCounterCache = new NodeCache()
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-})
-const question = text => new Promise(resolve => rl.question(text, resolve))
 
-const { CONNECTING } = ws
-const { chain } = lodash
-const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
+global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') { return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString() }; global.__dirname = function dirname(pathURL) { return path.dirname(global.__filename(pathURL, true)) }; global.__require = function require(dir = import.meta.url) { return createRequire(dir) } 
 
-protoType()
-serialize()
-
-global.API = (name, path = '/', query = {}, apikeyqueryname) =>
-  (name in global.APIs ? global.APIs[name] : name) +
-  path +
-  (query || apikeyqueryname
-    ? '?' +
-      new URLSearchParams(
-        Object.entries({
-          ...query,
-          ...(apikeyqueryname
-            ? {
-                [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name],
-              }
-            : {}),
-        })
-      )
-    : '')
+global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
+// global.Fn = function functionCallBack(fn, ...args) { return fn.call(global.conn, ...args) }
 global.timestamp = {
-  start: new Date(),
+  start: new Date
 }
 
 const __dirname = global.__dirname(import.meta.url)
+
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-global.prefix = new RegExp(
-  '^[' +
-    (process.env.PREFIX || '*/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-.@').replace(
-      /[|\\{}()[\]^$+*?.\-\^]/g,
-      '\\$&'
-    ) +
-    ']'
-)
+global.prefix = new RegExp('^[' + (opts['PREFIX'] || '‎z/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.,\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
+
 
 global.opts['db'] = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei'
+
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
     new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
       (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}userdb.json`)
 )
+
+
 global.DATABASE = global.db 
 global.loadDatabase = async function loadDatabase() {
   if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
@@ -205,120 +146,57 @@ global.loadDatabase = async function loadDatabase() {
 }
 loadDatabase()
 
-//Authenticator Credentials 
+//-- SESSION
 global.authFolder = `Authenticators`
+
 const { state, saveCreds } = await useMultiFileAuthState(global.authFolder)
-let { version, isLatest } = await fetchLatestWaWebVersion()
-
+let { version, isLatest } = await fetchLatestBaileysVersion() 
 const connectionOptions = {
-  version,
-  logger: Pino({
-    level: 'fatal',
-  }),
-  printQRInTerminal: !pairingCode,
-  browser: ['chrome (linux)', '', ''],
-  auth: {
-    creds: state.creds,
-    keys: makeCacheableSignalKeyStore(
-      state.keys,
-      Pino().child({
-        level: 'fatal',
-        stream: 'store',
-      })
-    ),
-  },
-  markOnlineOnConnect: true,
-  generateHighQualityLinkPreview: true,
-  getMessage: async key => {
-    let jid = jidNormalizedUser(key.remoteJid)
-    let msg = await store.loadMessage(jid, key.id)
-    return msg?.message || ''
-  },
-  patchMessageBeforeSending: (message) => {
-    const requiresPatch = !!(
-        message.buttonsMessage 
-        || message.templateMessage
-        || message.listMessage
-    );
-    if (requiresPatch) {
-        message = {
-            viewOnceMessage: {
-                message: {
-                    messageContextInfo: {
-                        deviceListMetadataVersion: 2,
-                        deviceListMetadata: {},
-                    },
-                    ...message,
-                },
-            },
-        };
-    }
+	    version,
+        printQRInTerminal: true,
+        auth: state,
+        browser: ['OREO-BOT', 'Edge', '107.0.1418.26'], 
+	      patchMessageBeforeSending: (message) => {
+                const requiresPatch = !!(
+                    message.buttonsMessage 
+                    || message.templateMessage
+                    || message.listMessage
+                );
+                if (requiresPatch) {
+                    message = {
+                        viewOnceMessage: {
+                            message: {
+                                messageContextInfo: {
+                                    deviceListMetadataVersion: 2,
+                                    deviceListMetadata: {},
+                                },
+                                ...message,
+                            },
+                        },
+                    };
+                }
 
-    return message;
-},
-  msgRetryCounterCache,
-  defaultQueryTimeoutMs: undefined,
-}
-
+                return message;
+            }, 
+      logger: pino({ level: 'silent' })
+} 
+//--
 global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
-store?.bind(conn.ev)
-
-if (pairingCode && !conn.authState.creds.registered) {
-  let phoneNumber
-  if (!!global.pairingNumber) {
-    phoneNumber = global.pairingNumber.replace(/[^0-9]/g, '')
-
-    if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-      console.log(
-        chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 91xxx"))
-      )
-      process.exit(0)
-    }
-  } else {
-    phoneNumber = await question(
-      chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `))
-    )
-    phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
-
-    if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-      console.log(
-        chalk.bgBlack(chalk.redBright("Start with your country's WhatsApp code, Example : 91xxx"))
-      )
-
-      phoneNumber = await question(
-        chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number : `))
-      )
-      phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
-      rl.close()
-    }
-  }
-
-  setTimeout(async () => {
-    let code = await conn.requestPairingCode(phoneNumber)
-    code = code?.match(/.{1,4}/g)?.join('-') || code
-    const pairingCode =
-      chalk.bold.greenBright('Your Pairing Code:') + ' ' + chalk.bgGreenBright(chalk.black(code))
-    console.log(pairingCode)
-  }, 3000)
-}
-
-conn.logger.info('\nWaiting For Login\n')
 
 if (!opts['test']) {
-  if (global.db) {
-    setInterval(async () => {
-      if (global.db.data) await global.db.write()
-      if (opts['autocleartmp'] && (global.support || {}).find)
-        (tmp = [os.tmpdir(), 'tmp']),
-          tmp.forEach(filename =>
-            cp.spawn('find', [filename, '-amin', '3', '-type', 'f', '-delete'])
-          )
-    }, 30 * 1000)
-  }
+  setInterval(async () => {
+    if (global.db.data) await global.db.write().catch(console.error)
+    if (opts['autocleartmp']) try {
+      clearTmp()
+
+    } catch (e) { console.error(e) }
+  }, 60 * 1000)
 }
 
 if (!opts['server']) (await import('./server.js')).default(global.conn, PORT)
+
+/* Clear */
 async function clearTmp() {
   const tmp = [tmpdir(), join(__dirname, './tmp')]
   const filename = []
@@ -336,44 +214,22 @@ setInterval(async () => {
 	console.log(chalk.cyan(`🚀 Bot Boosted and Temp Directory is Cleared 🔥`))
 }, 180000) //3 minutes
 
-clearTmp()
-
-function clearsession() {
-  let prekey = []
-  const directorio = readdirSync('./Authenticators')
-  const filesFolderPreKeys = directorio.filter(file => {
-    return file.startsWith('pre-key-')
-  })
-  prekey = [...prekey, ...filesFolderPreKeys]
-  filesFolderPreKeys.forEach(files => {
-    unlinkSync(`./Authenticators/${files}`)
-  })
-}
-
 async function connectionUpdate(update) {
-  const { connection, lastDisconnect, isNewLogin, qr } = update
-  global.stopped = connection
-  if (isNewLogin) conn.isInit = true
-  const code =
-    lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode
+  const {connection, lastDisconnect, isNewLogin} = update;
+  if (isNewLogin) conn.isInit = true;
+  const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.output?.payload?.statusCode;
+  
   if (code && code !== DisconnectReason.loggedOut && conn?.ws.socket == null) {
-    conn.logger.info(await global.reloadHandler(true).catch(console.error))
+    console.log(await global.reloadHandler(true).catch(console.error));
+    global.timestamp.connect = new Date;
   }
-  if (code && code == DisconnectReason.restartRequired) {
+  if (global.db.data == null) loadDatabase()
+    if (code && code == DisconnectReason.restartRequired) {
     conn.logger.info(chalk.yellow('\n🚩Restart Required... Restarting'))
     process.send('reset')
   }
-
-  if (global.db.data == null) loadDatabase()
-  if (!pairingCode && useQr && qr != 0 && qr != undefined) {
-    conn.logger.info(chalk.yellow('\nLogging in....'))
-  }
+  
   if (connection === 'open') {
-setInterval(async () => {
-	const { jid, name } = conn.user
-conn.reply(jid, '⭐ OREO-BOT is ALIVE', null)
-	console.log(chalk.cyan(`🫶⭐ ALIVE 🔥💗`))
-}, 1440000) 
     const { jid, name } = conn.user
 
     let msgf = `Hai🤩${name} Congrats you have successfully deployed SHIZO-OREO-BOT\nJoin my support Group for any Query\nhttps://chat.whatsapp.com/DWqdPuQ0yFkKyf1SzZ0k9Y`
@@ -397,79 +253,54 @@ conn.reply(jid, '⭐ OREO-BOT is ALIVE', null)
   }
 }
 
-process.on('uncaughtException', console.error)
 
-let isInit = true
+process.on('uncaughtException', console.error)
+// let strQuot = /(["'])(?:(?=(\\?))\2.)*?\1/
+
+let isInit = true;
 let handler = await import('./handler.js')
 global.reloadHandler = async function (restatConn) {
   try {
     const Handler = await import(`./handler.js?update=${Date.now()}`).catch(console.error)
     if (Object.keys(Handler || {}).length) handler = Handler
-  } catch (error) {
-    console.error
+  } catch (e) {
+    console.error(e)
   }
   if (restatConn) {
     const oldChats = global.conn.chats
-    try {
-      global.conn.ws.close()
-    } catch {}
+    try { global.conn.ws.close() } catch { }
     conn.ev.removeAllListeners()
-    global.conn = makeWASocket(connectionOptions, {
-      chats: oldChats,
-    })
+    global.conn = makeWASocket(connectionOptions, { chats: oldChats })
     isInit = true
   }
   if (!isInit) {
     conn.ev.off('messages.upsert', conn.handler)
-    conn.ev.off('messages.update', conn.pollUpdate)
     conn.ev.off('group-participants.update', conn.participantsUpdate)
     conn.ev.off('groups.update', conn.groupsUpdate)
     conn.ev.off('message.delete', conn.onDelete)
-    conn.ev.off('presence.update', conn.presenceUpdate)
     conn.ev.off('connection.update', conn.connectionUpdate)
     conn.ev.off('creds.update', conn.credsUpdate)
   }
 
-  conn.welcome = ` Hello @user!\n\n🎉 *WELCOME* to the group @group!\n\n📜 Please read the *DESCRIPTION* @desc.`
-  conn.bye = `👋GOODBYE @user \n\nSee you later!`
-  conn.spromote = `*@user* has been promoted to an admin!`
-  conn.sdemote = `*@user* is no longer an admin.`
-  conn.sDesc = `The group description has been updated to:\n@desc`
-  conn.sSubject = `The group title has been changed to:\n@group`
-  conn.sIcon = `The group icon has been updated!`
-  conn.sRevoke = ` The group link has been changed to:\n@revoke`
-  conn.sAnnounceOn = `The group is now *CLOSED*!\nOnly admins can send messages.`
-  conn.sAnnounceOff = `The group is now *OPEN*!\nAll participants can send messages.`
-  conn.sRestrictOn = `Edit Group Info has been restricted to admins only!`
-  conn.sRestrictOff = `Edit Group Info is now available to all participants!`
-
+  conn.welcome = 'Hey 👋, @user\nWelcome to @group 👑'
+  conn.bye = 'GoodBye 👋 @user'
+  conn.spromote = '@user is now Admin 🧧'
+  conn.sdemote = '@user is no Longer Admin 🧧🔫'
+  conn.sDesc = 'Group description has been Updated\n*🔮 New Description:*\n@desc'
+  conn.sSubject = 'Group name just updated\n*👑 New Name:*\n@group'
+  conn.sIcon = 'The group icon has been changed 🌸'
+  conn.sRevoke = 'The group link has been changed.\n*🖇️ New Link:*\n@revoke'
   conn.handler = handler.handler.bind(global.conn)
-  conn.pollUpdate = handler.pollUpdate.bind(global.conn)
   conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
   conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
   conn.onDelete = handler.deleteUpdate.bind(global.conn)
-  conn.presenceUpdate = handler.presenceUpdate.bind(global.conn)
   conn.connectionUpdate = connectionUpdate.bind(global.conn)
   conn.credsUpdate = saveCreds.bind(global.conn, true)
 
-  const currentDateTime = new Date()
-  const messageDateTime = new Date(conn.ev)
-  if (currentDateTime >= messageDateTime) {
-    const chats = Object.entries(conn.chats)
-      .filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats)
-      .map(v => v[0])
-  } else {
-    const chats = Object.entries(conn.chats)
-      .filter(([jid, chat]) => !jid.endsWith('@g.us') && chat.isChats)
-      .map(v => v[0])
-  }
-
   conn.ev.on('messages.upsert', conn.handler)
-  conn.ev.on('messages.update', conn.pollUpdate)
   conn.ev.on('group-participants.update', conn.participantsUpdate)
   conn.ev.on('groups.update', conn.groupsUpdate)
   conn.ev.on('message.delete', conn.onDelete)
-  conn.ev.on('presence.update', conn.presenceUpdate)
   conn.ev.on('connection.update', conn.connectionUpdate)
   conn.ev.on('creds.update', conn.credsUpdate)
   isInit = false
@@ -480,9 +311,9 @@ const pluginFolder = global.__dirname(join(__dirname, './plugins/index'))
 const pluginFilter = filename => /\.js$/.test(filename)
 global.plugins = {}
 async function filesInit() {
-  for (const filename of readdirSync(pluginFolder).filter(pluginFilter)) {
+  for (let filename of readdirSync(pluginFolder).filter(pluginFilter)) {
     try {
-      const file = global.__filename(join(pluginFolder, filename))
+      let file = global.__filename(join(pluginFolder, filename))
       const module = await import(file)
       global.plugins[filename] = module.default || module
     } catch (e) {
@@ -491,95 +322,78 @@ async function filesInit() {
     }
   }
 }
-filesInit()
-  .then(_ => Object.keys(global.plugins))
-  .catch(console.error)
+filesInit().then(_ => console.log(Object.keys(global.plugins))).catch(console.error)
 
 global.reload = async (_ev, filename) => {
   if (pluginFilter(filename)) {
-    const dir = global.__filename(join(pluginFolder, filename), true)
+    let dir = global.__filename(join(pluginFolder, filename), true)
     if (filename in global.plugins) {
-      if (existsSync(dir)) conn.logger.info(`\nUpdated plugin - '${filename}'`)
+       if (existsSync(dir)) conn.logger.info(`🌟 Updated Plugin - '${filename}'`)
       else {
-        conn.logger.warn(`\nDeleted plugin - '${filename}'`)
+        conn.logger.warn(`🗑️ Plugin Deleted - '${filename}'`)
         return delete global.plugins[filename]
       }
-    } else conn.logger.info(`\nNew plugin - '${filename}'`)
-    const err = syntaxerror(readFileSync(dir), filename, {
+    } else conn.logger.info(`✨ New plugin - '${filename}'`)
+    let err = syntaxerror(readFileSync(dir), filename, {
       sourceType: 'module',
-      allowAwaitOutsideFunction: true,
+      allowAwaitOutsideFunction: true
     })
-    if (err) conn.logger.error(`\nSyntax error while loading '${filename}'\n${format(err)}`)
-    else {
-      try {
-        const module = await import(`${global.__filename(dir)}?update=${Date.now()}`)
-        global.plugins[filename] = module.default || module
-      } catch (e) {
-        conn.logger.error(`\nError require plugin '${filename}\n${format(e)}'`)
-      } finally {
-        global.plugins = Object.fromEntries(
-          Object.entries(global.plugins).sort(([a], [b]) => a.localeCompare(b))
-        )
-      }
+    if (err) conn.logger.error(`❌ syntax error while loading '${filename}'\n${format(err)}`)
+    else try {
+      const module = (await import(`${global.__filename(dir)}?update=${Date.now()}`))
+      global.plugins[filename] = module.default || module
+    } catch (e) {
+      conn.logger.error(`error require plugin '${filename}\n${format(e)}'`)
+    } finally {
+     global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b]) => a.localeCompare(b)))
     }
   }
 }
 Object.freeze(global.reload)
 watch(pluginFolder, global.reload)
 await global.reloadHandler()
+
+// Quick Test
 async function _quickTest() {
-  const test = await Promise.all(
-    [
-      spawn('ffmpeg'),
-      spawn('ffprobe'),
-      spawn('ffmpeg', [
-        '-hide_banner',
-        '-loglevel',
-        'error',
-        '-filter_complex',
-        'color',
-        '-frames:v',
-        '1',
-        '-f',
-        'webp',
-        '-',
-      ]),
-      spawn('convert'),
-      spawn('magick'),
-      spawn('gm'),
-      spawn('find', ['--version']),
-    ].map(p => {
-      return Promise.race([
-        new Promise(resolve => {
-          p.on('close', code => {
-            resolve(code !== 127)
-          })
-        }),
-        new Promise(resolve => {
-          p.on('error', _ => resolve(false))
-        }),
-      ])
-    })
-  )
-  const [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test
-  const s = (global.support = {
+  let test = await Promise.all([
+    spawn('ffmpeg'),
+    spawn('ffprobe'),
+    spawn('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-filter_complex', 'color', '-frames:v', '1', '-f', 'webp', '-']),
+    spawn('convert'),
+    spawn('magick'),
+    spawn('gm'),
+    spawn('find', ['--version'])
+  ].map(p => {
+    return Promise.race([
+      new Promise(resolve => {
+        p.on('close', code => {
+          resolve(code !== 127)
+        })
+      }),
+      new Promise(resolve => {
+        p.on('error', _ => resolve(false))
+      })
+    ])
+  }))
+  let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test
+  console.log(test)
+  let s = global.support = {
     ffmpeg,
     ffprobe,
     ffmpegWebp,
     convert,
     magick,
     gm,
-    find,
-  })
+    find
+  }
+  // require('./lib/sticker').support = s
   Object.freeze(global.support)
+
+  if (!s.ffmpeg) conn.logger.warn('Please install ffmpeg for sending videos (pkg install ffmpeg)')
+  if (s.ffmpeg && !s.ffmpegWebp) conn.logger.warn('Stickers may not animated without libwebp on ffmpeg (--enable-ibwebp while compiling ffmpeg)')
+  if (!s.convert && !s.magick && !s.gm) conn.logger.warn('Stickers may not work without imagemagick if libwebp on ffmpeg doesnt isntalled (pkg install imagemagick)')
 }
 
-async function saafsafai() {
-  if (stopped === 'close' || !conn || !conn.user) return
-  clearsession()
-  console.log(chalk.cyanBright('\nStored Sessions Cleared'))
-}
-
-setInterval(saafsafai, 10 * 60 * 1000)
-
-_quickTest().catch(console.error)
+_quickTest()
+  .then(() => conn.logger.info('🤖 SYSTEM SUCESSFULLY PERFORMED AND PASSED THE NORMAL OPERATION TEST 🚀'))
+  .catch(console.error)
