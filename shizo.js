@@ -122,12 +122,12 @@ global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse()
 global.prefix = new RegExp('^[' + (opts['PREFIX'] || '‎z/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.,\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
 
-global.opts['db'] = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei'
+let sMongodb = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei'
 
 global.db = new Low(
-  /https?:\/\//.test(opts['db'] || '') ?
-    new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
-      (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
+  /https?:\/\//.test(sMongodb) ?
+    new cloudDBAdapter(sMongodb) : /mongodb(\+srv)?:\/\//i.test(sMongodb) ?
+      (opts['mongodbv2'] ? new mongoDBV2(sMongodb) : new mongoDB(sMongodb)) :
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}userdb.json`)
 )
 
