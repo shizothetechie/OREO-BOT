@@ -19,7 +19,6 @@ import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import dotenv from 'dotenv'
 import { Low, JSONFile } from 'lowdb';
 import pino from 'pino';
-import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
 import genses from './lib/genses.js'
 import {
     useMultiFileAuthState,
@@ -41,6 +40,15 @@ const {
 } = await (
   await import('@whiskeysockets/baileys')
 ).default
+
+/*
+      MongoDB Testing
+*/
+import { Low } from 'lowdb'
+import { JSONFile } from 'lowdb/node'
+import { cloudDBAdapter, mongoDB, mongoDBV2 } from './DB_Adapters/index.js'
+import lodash from 'lodash'
+
 
 protoType()
 serialize()
@@ -121,7 +129,50 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['PREFIX'] || '‎z/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.,\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
+const databaseUrl = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei';
+const databaseAdapter = /https?:\/\//.test(databaseUrl) ?
+    new cloudDBAdapter(databaseUrl) : /mongodb(\+srv)?:\/\//i.test(databaseUrl) ?
+        (opts['mongodbv2'] ? new mongoDBV2(databaseUrl) : new mongoDB(databaseUrl)) :
+        new JSONFile(`${global.opts._[0] ? global.opts._[0] + '_' : ''}database.json`);
 
+let database = new Low(databaseAdapter);
+
+async function loadDatabase() {
+    // If database is being read, wait for it to finish
+    if (database._read) {
+        await new Promise((resolve) => {
+            const interval = setInterval(() => {
+                if (!database._read) {
+                    clearInterval(interval);
+                    resolve(database.data == null ? loadDatabase() : database.data);
+                }
+            }, 1000);
+        });
+    }
+
+    if (database.data !== null) return database.data;
+    
+    database._read = database.read().catch(console.error);
+    await database._read;
+
+    console.log('- Database loaded -');
+    database.data = {
+        users: {},
+        chats: {},
+        stats: {},
+        msgs: {},
+        sticker: {},
+        settings: {},
+        ...(database.data || {})
+    };
+
+    database.chain = lodash.chain(database.data);
+    return database.data;
+}
+
+loadDatabase();
+
+/*
 let sMongodb = process.env.DATABASE_URL || 'mongodb+srv://xeisensei7:DeepakR3442A@xeisensei.1vo3dqm.mongodb.net/?retryWrites=true&w=majority&appName=xeisensei'
 
 global.db = new Low(
@@ -156,6 +207,7 @@ global.loadDatabase = async function loadDatabase() {
   global.db.chain = chain(global.db.data)
 }
 loadDatabase()
+*/
 
 //-- SESSION
 global.authFolder = `Authenticators`
