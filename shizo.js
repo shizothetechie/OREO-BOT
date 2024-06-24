@@ -156,6 +156,7 @@ async function loadDatabase() {
     await database._read;
 
     console.log('- Database loaded -');
+global.DATABASE = global.db 
     database.data = {
         users: {},
         chats: {},
@@ -249,7 +250,7 @@ conn.isInit = false
 
 if (!opts['test']) {
   setInterval(async () => {
-    if (global.db.data) await global.db.write().catch(console.error)
+   // if (global.db.data) await global.db.write().catch(console.error)
     if (opts['autocleartmp']) try {
       clearTmp()
 
