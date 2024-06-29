@@ -213,6 +213,7 @@ if (!opts['test']) {
 //if (!opts['server']) (await import('./server.js')).default(global.conn, PORT)
 
 /* Clear */
+/*
 async function clearTmp() {
   const tmp = [tmpdir(), join(__dirname, './tmp')]
   const filename = []
@@ -229,7 +230,8 @@ setInterval(async () => {
 	var a = await clearTmp()
 	console.log(chalk.cyan(`🚀 Bot Boosted and Temp Directory is Cleared 🔥`))
 }, 180000) //3 minutes
-
+*/
+	
 async function connectionUpdate(update) {
   const {connection, lastDisconnect, isNewLogin} = update;
   if (isNewLogin) conn.isInit = true;
