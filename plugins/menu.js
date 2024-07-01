@@ -14,14 +14,14 @@ const defaultMenu = {
 ┃⫹⫺ *𝚃𝚘𝚝𝚊𝚕:* ${totalf} + Features
 ┃⫹⫺ *𝚅𝚎𝚛𝚜𝚒𝚘𝚗:* V1.4.3
 ┃⫹⫺ *𝙿𝚛𝚎𝚏𝚒𝚡:* Multi Prefix 
-┃⫹⫺ *𝙾𝚠𝚗𝚎𝚛:* 
+┃⫹⫺ *𝙾𝚠𝚗𝚎𝚛:* Shizo The Techie
 ┃⫹⫺ *𝙿𝚕𝚊𝚝𝚏𝚘𝚛𝚖:* 𝙻𝚒𝚗𝚞𝚡
 ┖─────────┈┈┈〠⸙࿉༐
     %readmore`.trimStart(),
   header: '┏━━━━ ❨ *%category* ❩ ━━┄┈ •⟅ ',
   body: ' ┃✦ %cmd',
   footer: '┗━═┅┅┅┅═━–––––––๑\n',
-  after: `*Made by ♡ ${global.owner}*`,
+  after: `*Made by ♡ ${global.oname}*`,
 }
 
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {

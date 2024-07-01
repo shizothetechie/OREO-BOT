@@ -1,18 +1,24 @@
 let handler = async (m, { conn, usedPrefix, text, command }) => {
-  if (!text) throw `Please provide a phone number\n\n📌 Example: *${usedPrefix + command}* 1234567890`;
+  let waLin = ''
+  if (text) {
+    waLin = text.replace(/[^0-9]/g, '')
+  } else if (m.quoted) {
+    waLin = m.quoted.sender.replace(/[^0-9]/g, '')
+  } else if (m.mentionedJid && m.mentionedJid[0]) {
+    waLin = m.mentionedJid[0].replace(/[^0-9]/g, '')
+  } else {
+    throw `Please provide a number, quote a user, or mention a user`
+  }
+  const waLink = `https://wa.me/${waLin}`
+  const message = `*WhatsApp Link:*\n${waLink}`
 
-  const waLink = `https://wa.me/${text}`;
-  const message = `*WhatsApp Link:*\n${waLink}`;
+  conn.sendMessage(m.chat, { text: message, quoted: m, contextInfo: { mentionedJid: [m.sender] } })
 
-  conn.sendMessage(m.chat, { text: message, quoted: m, contextInfo: { mentionedJid: [m.sender] } });
+  m.react('✅')
+}
 
-  m.react('✅');
-};
+handler.help = ['wa']
+handler.tags = ['tools']
+handler.command = ['wa']
 
-handler.help = ['wa'];
-handler.tags = ['tools'];
-handler.command = ['wa'];
-
-export default handler;
-
-
+export default handler

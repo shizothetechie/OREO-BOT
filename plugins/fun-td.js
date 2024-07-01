@@ -86,12 +86,13 @@ handler.command = /^(truth|dare|wyr|wouldyourather|nhie|neverhaveiever|paranoia|
 handler.group = true;
 // td -> list of commands that is in handler.help
 handler.help = [
-  'truth',
-  'dare',
-  'wyr',
-  'nhie',
-  'paranoia',
-  'td'
+  'truth - Get a random truth question.',
+  'dare - Get a random dare question.',
+  'wyr - Get a random Would You Rather question.',
+  'nhie - Get a random Never Have I Ever question.',
+  'paranoia - Get a random Paranoia question.',
+  'td - List all available Truth or Dare commands.'
 ];
 
 export default handler;
+

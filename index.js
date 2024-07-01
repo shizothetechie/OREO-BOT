@@ -7,7 +7,7 @@ import path from 'path'
 import { fileURLToPath } from 'url';
 
 figlet(
-  'OREO-WA-BOT',
+  'OREO-BOT',
   {
     font: 'Ghost',
     horizontalLayout: 'default',
@@ -37,7 +37,6 @@ figlet(
   }
 )
 
-
 const app = express()
 const port = process.env.PORT || 5000
 
@@ -53,7 +52,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(chalk.green(`Port ${port} is open`))
 })
-
 
 let isRunning = false
 
@@ -89,7 +87,7 @@ async function start(file) {
 
     fs.watchFile(args[0], () => {
       fs.unwatchFile(args[0])
-      start('Guru.js')
+      start('shizo.js')
     })
   })
 
@@ -97,7 +95,7 @@ async function start(file) {
     console.error(chalk.red(`Error: ${err}`))
     p.kill()
     isRunning = false
-    start('Guru.js')
+    start('shizo.js')
   })
 
   const pluginsFolder = path.join(path.dirname(currentFilePath), 'plugins')
@@ -110,7 +108,7 @@ async function start(file) {
     console.log(chalk.yellow(`Installed ${files.length} plugins`))
 
     try {
-      const { default: baileys } = await import('@whiskeysockets/baileys')
+      const { default: baileys } = await import('@shizodevs/shizoweb')
       const version = (await baileys.fetchLatestBaileysVersion()).version
       console.log(chalk.yellow(`Using Baileys version ${version}`))
     } catch (e) {

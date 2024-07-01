@@ -1,71 +1,41 @@
-import fetch from 'node-fetch';
-import fs from 'fs';
-import path from 'path';
-import os from 'os';
+import fetch from 'node-fetch'
 let handler = async (m, { conn, text }) => {
-    if (!text) {
-        console.log('No song name provided.');
-        throw `*Please enter a song name*`;
-    }
-    try {
-        const apiUrl = `https://www.guruapi.tech/api/spotifyinfo?text=${encodeURIComponent(text)}`;
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            console.log('Error searching for song:', response.statusText);
-            throw 'Error searching for song';
-        }
-        const data = await response.json();
-        const coverimage = data.spty.results.thumbnail;
-        const name = data.spty.results.title
-        const slink = data.spty.results.url;
+  if (!text) {
+    console.log('No song name provided.')
+    throw `*Please enter a song name*`
+  }
+  m.react('🎶')
+  await displayLoadingScreen(conn, m.chat)
+  let pp = 'https://wallpapercave.com/wp/wp7932387.jpg'
+  const query = encodeURIComponent(text)
+  let res = `https://guruapi.tech/api/spotifydl?url=${query}`
+  // let spotify = await (await fetch(res)).buffer()
+  let doc = {
+    audio: {
+      url: res,
+    },
+    mimetype: 'audio/mpeg',
+    ptt: true,
+    waveform: [100, 0, 100, 0, 100, 0, 100],
+    fileName: 'shizo.mp3',
 
-        const dlapi = `https://www.guruapi.tech/api/spotifydl?text=${encodeURIComponent(text)}`;
-        const audioResponse = await fetch(dlapi);
-        if (!audioResponse.ok) {
-            console.log('Error fetching audio:', audioResponse.statusText);
-            throw 'Error fetching audio';
-        }
-        const audioBuffer = await audioResponse.buffer();
-        const tempDir = os.tmpdir();
-        const audioFilePath = path.join(tempDir, 'audio.mp3');
+    contextInfo: {
+      mentionedJid: [m.sender],
+      externalAdReply: {
+        title: '↺ |◁   II   ▷|   ♡',
+        body: `Now playing: ${text}`,
+        thumbnailUrl: pp,
+        sourceUrl: null,
+        mediaType: 1,
+        renderLargerThumbnail: false,
+      },
+    },
+  }
 
-        try {
-            await fs.promises.writeFile(audioFilePath, audioBuffer);
-        } catch (writeError) {
-            console.error('Error writing audio file:', writeError);
-            throw 'Error writing audio file';
-        }
+  await conn.sendMessage(m.chat, doc, { quoted: m })
+}
+handler.help = ['spotify']
+handler.tags = ['downloader']
+handler.command = /^(spotify|song)$/i
 
-        let doc = {
-            audio: {
-              url: audioFilePath
-            },
-            mimetype: 'audio/mpeg',
-            ptt: true,
-            waveform:  [100, 0, 100, 0, 100, 0, 100],
-            fileName: "Guru",
-        
-            contextInfo: {
-              mentionedJid: [m.sender],
-              externalAdReply: {
-                title: "↺ |◁   II   ▷|   ♡",
-                body: `Now playing: ${name}`,
-                thumbnailUrl: coverimage,
-                sourceUrl: slink,
-                mediaType: 1,
-                renderLargerThumbnail: true
-              }
-            }
-        };
-        
-        await conn.sendMessage(m.chat, doc, { quoted: m });
-    } catch (error) {
-        console.error('Error fetching Spotify data:', error);
-        throw '*Error*';
-    }
-};
-handler.help = ['spotify'];
-handler.tags = ['downloader'];
-handler.command = /^(spotify|song)$/i;
-
-export default handler;
+export default handler
