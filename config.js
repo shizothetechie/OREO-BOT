@@ -15,7 +15,7 @@ global.prems = []
 global.author = process.env.OWNER_NAME || 'Shizo The Techie'
 global.botname = process.env.BOT_NAME || 'OREO-BOT'
 global.oname = author
-global.bname = botnamd
+global.bname = botname
 
 //Extra Shortcuts
 global.smlink = process.env.SOCIAL_MEDIA_LINK || 'https://instagram.com/shizo_the_techie'
