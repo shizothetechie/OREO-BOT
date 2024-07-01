@@ -146,7 +146,7 @@ cd oreo-bot && node .
 
 ## CREDITS 
 <div><button id="boton" type="button">Baileys - By ShizoDevs & adiwajshing</button></div>
-<a href="https://github.com/shizo-dev/shizoweb"><img src="https://github.com/shizo-dev.png" width="70" height="70" alt="adiwajshing"/></a>
+<a href="https://github.com/shizo-devs/shizoweb"><img src="https://github.com/shizo-devs.png" width="70" height="70" alt="adiwajshing"/></a>
 
 <div><button id="boton" type="button">Base  - By Shizo The Techie (ShizoBot)</button></div>
 <a href="https://github.com/shizothetechie"><img src="https://github.com/shizothetechie.png" width="70" height="70" alt="adiwajshing"/></a>
