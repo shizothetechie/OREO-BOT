@@ -160,11 +160,7 @@ cd oreo-bot && node .
 
 ### CONTRIBUTORS
 <a href="https://github.com/syntax-king"><img src="https://github.com/syntax-king.png" width="85" height="85" alt="Subham"/></a>
-
 <a href="https://github.com/Guru322"><img src="https://github.com/Guru322.png" width="85" height="85" alt="Guru"/></a>
-
 <a href="https://github.com/kai0071"><img src="https://github.com/kai0071.png" width="85" height="85" alt="Achintya"/></a>
-
 <a href="https://github.com/DGXeon"><img src="https://github.com/DGXeon.png" width="85" height="85" alt="Xeon"/></a>
-
 <a href="https://github.com/Xei-Sensei"><img src="https://github.com/Xei-Sensei.png" width="85" height="85" alt="Xei Sensei"/></a>
