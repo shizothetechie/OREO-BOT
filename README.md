@@ -145,8 +145,8 @@ cd oreo-bot && node .
 
 
 ## CREDITS 
-<div><button id="boton" type="button">Baileys - By WhiskeySockets & adiwajshing</button></div>
-<a href="https://github.com/WhiskeySockets/Baileys"><img src="https://github.com/WhiskeySockets.png" width="70" height="70" alt="adiwajshing"/></a>
+<div><button id="boton" type="button">Baileys - By ShizoDevs & adiwajshing</button></div>
+<a href="https://github.com/shizo-dev/shizoweb"><img src="https://github.com/shizo-dev.png" width="70" height="70" alt="adiwajshing"/></a>
 
 <div><button id="boton" type="button">Base  - By Shizo The Techie (ShizoBot)</button></div>
 <a href="https://github.com/shizothetechie"><img src="https://github.com/shizothetechie.png" width="70" height="70" alt="adiwajshing"/></a>
@@ -159,14 +159,12 @@ cd oreo-bot && node .
 `OREO-BOT - By Shizo The Techie`
 
 ### CONTRIBUTORS
-<a href="https://github.com/dev-shizo"><img src="https://github.com/dev-shizo.png" width="85" height="85" alt="Shizo Devs"/></a>
-
 <a href="https://github.com/syntax-king"><img src="https://github.com/syntax-king.png" width="85" height="85" alt="Subham"/></a>
-
-<a href="https://github.com/DGXeon"><img src="https://github.com/DGXeon.png" width="85" height="85" alt="Xeon"/></a>
 
 <a href="https://github.com/Guru322"><img src="https://github.com/Guru322.png" width="85" height="85" alt="Guru"/></a>
 
 <a href="https://github.com/kai0071"><img src="https://github.com/kai0071.png" width="85" height="85" alt="Achintya"/></a>
+
+<a href="https://github.com/DGXeon"><img src="https://github.com/DGXeon.png" width="85" height="85" alt="Xeon"/></a>
 
 <a href="https://github.com/Xei-Sensei"><img src="https://github.com/Xei-Sensei.png" width="85" height="85" alt="Xei Sensei"/></a>
