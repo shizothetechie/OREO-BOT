@@ -6,9 +6,9 @@ import fs from 'fs'
      await fs.writeFileSync(path, m.quoted.text) 
      m.reply(`stored in ${path}`) 
  } 
- handler.help = ['sf'].map(v => v + ' <teks>') 
+ handler.help = ['sf'].map(v => v + ' <texts>') 
  handler.tags = ['owner'] 
- handler.command = /^sf$/i 
+ handler.command = /^sf|savefile|addplugin$/i 
   
  handler.rowner = true 
  export default handler
