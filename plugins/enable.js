@@ -206,6 +206,16 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       global.opts['gconly'] = isEnable
       break
 
+      case 'self':
+      isAll = true
+      if (!isROwner) {
+        global.dfail('rowner', m, conn)
+        throw false
+      }
+      global.opts['self'] = isEnable
+      break
+
+      
     default:
       if (!/[01]/.test(command))
         return m.reply(`
