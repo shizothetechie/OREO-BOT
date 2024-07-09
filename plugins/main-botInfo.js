@@ -50,7 +50,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
       : m.fromMe
         ? conn.user.jid
         : m.sender
-  if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
+  if (!(who in global.db.data.users)) throw `The user is not found in my database`
   let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './media/shizo.jpg')
   let user = global.db.data.users[who]
 
@@ -65,7 +65,6 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 ▢ *${chats.length}* Total Chats
 
 *≡ OWNER*
-  *GURU*
 ▢ Instagram :
   • https://instagram.com/shizo_the_techie
 ▢ GitHub :
@@ -79,7 +78,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 *🛑 RAM:* ${format(totalmem() - freemem())} / ${format(totalmem())}
 *🔵 FreeRAM:* ${format(freemem())}
 
-*≡  NodeJS memory *
+*≡  NodeJS memory*
 ${
   '```' +
   Object.keys(used)
