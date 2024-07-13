@@ -368,7 +368,7 @@ async function connectionUpdate(update) {
   if (connection === 'open') {
     const { jid, name } = conn.user
 
-    let msgf = `Hai🤩${name} Congrats you have successfully deployed SHIZO-BOT\nJoin my support Group for any Query\n`
+    let msgf = `Hai🤩${name} Congrats you have successfully deployed SHIZO-BOT\nJoin my support Group for any Query\nhttps://chat.whatsapp.com/DWqdPuQ0yFkKyf1SzZ0k9Y`
 
     let gmes = conn.sendMessage(
       jid,
