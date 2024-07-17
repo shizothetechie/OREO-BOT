@@ -33,7 +33,7 @@
 
 ## ```Bot Support Groups```
 
-<a href="https://chat.whatsapp.com/DWqdPuQ0yFkKyf1SzZ0k9Y"><img src="https://img.shields.io/badge/Join support group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
+<a href="https://chat.whatsapp.com/C7hcNLRf9s0GSGq7UiMulm"><img src="https://img.shields.io/badge/Join support group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
 
 <a href="https://whatsapp.com/channel/0029VaCkzkr3wtb1uYWiRz2o"><img src="https://img.shields.io/badge/Follow Channel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"></a>
 
