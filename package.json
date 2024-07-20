@@ -41,6 +41,7 @@
         "@shineiichijo/marika": "^2.0.6",
         "awesome-phonenumber": "^3.4.0",
         "acrcloud": "^1.4.0",
+        "@distube/ytdl-core": "^4.13.5",
         "@shineiichijo/marika": "^2.0.6",
         "pastebin-js": "^1.0.6",
         "aptoide-scraper": "^1.0.1",
