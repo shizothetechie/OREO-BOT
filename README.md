@@ -159,6 +159,7 @@ cd oreo-bot && node .
 `OREO-BOT - By Shizo The Techie`
 
 ### CONTRIBUTORS
+<a href="https://github.com/gariox3d"><img src="https://github.com/gariox3d.png" width="85" height="85" alt="Gariox 3D"/></a>
 <a href="https://github.com/syntax-king"><img src="https://github.com/syntax-king.png" width="85" height="85" alt="Subham"/></a>
 <a href="https://github.com/Guru322"><img src="https://github.com/Guru322.png" width="85" height="85" alt="Guru"/></a>
 <a href="https://github.com/kai0071"><img src="https://github.com/kai0071.png" width="85" height="85" alt="Achintya"/></a>
