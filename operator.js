@@ -15,7 +15,7 @@ import { smsg } from './oreolab/labMast.js'
 
 /** @type {import('@shizodevs/shizoweb')} */
 const { getContentType } = (await import('@shizodevs/shizoweb')).default
-
+global.db = db
 const isNumber = x => typeof x === 'number' && !isNaN(x)
 const isLinux = (os.platform() === 'win32') ? false : true
 /**
