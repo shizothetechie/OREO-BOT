@@ -1,1 +1,0 @@
-© shizo the techie
